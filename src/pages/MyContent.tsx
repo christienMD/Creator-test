@@ -6,7 +6,7 @@ import { useProducts } from '@/hooks/useProducts';
 
 function MyContentPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { products, isLoading, error } = useProducts();
+  const { products, isLoading } = useProducts();
   return (
     <PublicPageLayout>
       <h1 className="catalog-heading mb-5 p-10 section-container">
