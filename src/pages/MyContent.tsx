@@ -5,7 +5,6 @@ import Sidemenu from '@/components/sections/SideMenu/Sidemenu';
 import { useProducts } from '@/hooks/useProducts';
 
 function MyContentPage() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { products, isLoading } = useProducts();
   return (
     <PublicPageLayout>
