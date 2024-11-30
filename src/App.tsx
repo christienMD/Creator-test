@@ -1,12 +1,17 @@
 
+import { useEffect } from "react";
+import Router from "./Routes/Router";
+import useCartStore from "@/stores/useCartStore";
 
-function App() {
+const App = () => {
 
-  return (
-    <>
-     <h2 className="text-3xl font-bold">React Laravel </h2>
-    </>
-  )
-}
+  const loadCart = useCartStore((state) => state.loadCart);
 
-export default App
+  useEffect(() => {
+    loadCart(); // Load cart data from localStorage on app initialization
+  }, [loadCart]);
+
+  return <Router />;
+};
+
+export default App;

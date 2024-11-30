@@ -4,7 +4,7 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 180 42% 9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
@@ -27,7 +27,15 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
+    --radius: 0.5rem;
+    --sidebar-background: 180 54% 5%;
+     --sidebar-foreground: 180 100% 100%; 
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%; 
+    --sidebar-accent: 180 42% 9%;
+    --sidebar-accent-foreground: 180 100% 100%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -53,7 +61,15 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
+    /* --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%; */
   }
 }
 @layer base {
@@ -62,5 +78,154 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-y: scroll !important;
+    padding-right: 0 !important;
   }
+
+  html {
+    overflow-y: scroll;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  .player-wrapper {
+    width: auto;
+    height: auto;
+  }
+
+  .react-player {
+    padding-top: 56.25%;
+    position: relative;
+  }
+
+  .react-player > div {
+    position: absolute;
+  }
+
+  /* Audio player */
+
+  /* Custom Audio Player Styles */
+  .audio-player-custom {
+    background: transparent !important;
+    box-shadow: none !important;
+    width: 90% !important;
+    padding: 10px !important;
+  }
+
+  /* Progress bar container */
+  .audio-player-custom .rhap_progress-section {
+    margin: 0 !important;
+  }
+
+  /* Progress bar styling */
+  .audio-player-custom .rhap_progress-bar {
+    height: 4px !important;
+    background-color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  .audio-player-custom .rhap_progress-filled {
+    background-color: #004C4C !important;
+  }
+
+  .audio-player-custom .rhap_progress-indicator {
+    width: 12px !important;
+    height: 12px !important;
+    margin-left: -6px !important;
+    top: -4px !important;
+    background: #004C4C !important;
+  }
+
+  /* Time display */
+  .audio-player-custom .rhap_time {
+    color: white !important;
+    font-size: 0.875rem !important;
+  }
+
+  /* Play/Pause button */
+  .audio-player-custom .rhap_main-controls-button {
+    color: #004C4C !important;
+    transition: color 0.2s ease !important;
+  }
+
+  .audio-player-custom .rhap_main-controls-button:hover {
+    color: theme("colors.creator-brown") !important;
+  }
+
+  /* Volume controls */
+  .audio-player-custom .rhap_volume-button {
+    color: #004C4C !important;
+  }
+
+  .audio-player-custom .rhap_volume-bar {
+    background: rgba(255, 255, 255, 0.3) !important;
+    height: 4px !important;
+  }
+
+  .audio-player-custom .rhap_volume-indicator {
+    background: #004C4C !important;
+    width: 12px !important;
+    height: 12px !important;
+    margin-left: -6px !important;
+    top: -4px !important;
+  }
+
+  /* Container spacing */
+  .audio-player-custom .rhap_controls-section {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .audio-player-custom .rhap_main-controls {
+    margin: 0 8px !important;
+  }
+
+  /* Volume slider adjustments */
+  .audio-player-custom .rhap_volume-controls {
+    margin-left: 8px !important;
+  }
+}
+.heading {
+  @apply text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8;
+}
+
+.interest-btn {
+  @apply px-4 py-1.5 m-1 text-sm font-medium text-[#D8D8D8] bg-creator-bg-300 border cursor-text border-[#D8D8D8] rounded-md hover:opacity-85 focus:outline-none focus:ring-2 focus:ring-gray-400 transition-colors duration-200;
+}
+
+.show-more-btn {
+  @apply w-full md:w-64 py-2 px-4 border-2 border-creator-bg-400 text-creator-bg-400 font-semibold rounded-md transition-colors duration-200 hover:bg-creator-bg-400 hover:text-white hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50;
+}
+
+.summarybutton {
+  @apply flex items-center justify-center text-center hover:text-[#FFFFFF] hover:bg-[#1d5555e0] gap-[10px] py-[10px] px-[15px] rounded-md w-full font-semibold text-base;
+}
+.clearcart {
+  @apply flex items-center self-end gap-[10px] py-[5px] px-[15px] bg-[#FFFBFB] border-[0.5px] border-[#393939B2] rounded-md mb-5;
+}
+
+
+.catalog-heading {
+  @apply text-xl sm:text-2xl md:text-3xl font-bold text-black capitalize;
+}
+
+.section-container {
+  @apply container mx-auto px-3;
+}
+
+.audio-control-wrapper {
+  @apply rounded-full p-2 flex items-center justify-center;
+}
+
+.play-pause-button {
+  @apply bg-creator-bg-400 audio-control-wrapper;
+}
+
+.volume-button {
+  @apply bg-creator-brown audio-control-wrapper;
 }
