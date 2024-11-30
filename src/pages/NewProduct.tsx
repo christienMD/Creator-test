@@ -1,11 +1,12 @@
 import ProductDashboardLayout from "../components/sections/ProductDashboardLayout/ProductDashboardLayout";
-import UploadForm from "@/components/sections/UploadForm/UploadForm";
 
 function NewProduct() {
   return (
     <>
       <ProductDashboardLayout>
-        <UploadForm />
+        <div className="text-5xl">
+           New Product
+        </div>
       </ProductDashboardLayout>
     </>
   );

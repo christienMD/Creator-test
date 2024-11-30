@@ -11,6 +11,10 @@ import { ZipContentPreview } from "../ZipContentPreview/ZipContentPreview";
 import useCartStore from "@/stores/useCartStore";
 import { VideoContentPreview } from "../VideoContentPreview/VideoContentPreview";
 import ImageContentPreview from "../ImageContentPreview/ImageContentPreview";
+import {
+  DEFAULT_IMAGE,
+  getMediaByCollection,
+} from "@/utils/getMediaByCollection";
 
 interface productDetails {
   product: Product;
@@ -29,6 +33,8 @@ const ProductDetailsPreview: React.FC<productDetails> = ({
   product_items,
 }) => {
   const [isFixed, setIsFixed] = useState(false);
+
+  const media = getMediaByCollection(product.relationships.media);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,11 +64,16 @@ const ProductDetailsPreview: React.FC<productDetails> = ({
     >
       <div className="rounded-md shadow-md">
         <div className=" h-32 w-full relative rounded-md border overflow-hidden">
-          {isVideoContent && <VideoContentPreview videoUrl={""} />}
+          {isVideoContent && (
+            <VideoContentPreview
+              previewUrl={media.preview || DEFAULT_IMAGE}
+              thumbnail={media.thumbnail || DEFAULT_IMAGE}
+            />
+          )}
           {isImageContent && (
             <ImageContentPreview
-              imageUrl={"/images/default.jpg"}
-              altText={title}
+              bannerImage={media.banner || DEFAULT_IMAGE}
+              altText={product.title}
             />
           )}
           {isEbookContent && (
@@ -74,10 +85,8 @@ const ProductDetailsPreview: React.FC<productDetails> = ({
           )}
           {isAudioContent && (
             <AudioContentPreview
-              src={
-                "https://cdn.pixabay.com/audio/2022/11/17/audio_547db67f5f.mp3"
-              }
-              bannerImage={"/images/default.jpg"}
+              previewUrl={media.preview || DEFAULT_IMAGE}
+              bannerImage={media.banner || DEFAULT_IMAGE}
             />
           )}
           {isLinkContent && (
