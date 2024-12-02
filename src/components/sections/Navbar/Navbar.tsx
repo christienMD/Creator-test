@@ -103,7 +103,7 @@ const Navbar = () => {
                   <div className="h-full flex flex-col p-6">
                     <SheetHeader className="mb-6">
                       <h2 className="text-3xl font-bold">
-                        <Link to="/">CREATORS</Link>
+                        <Link to="/home">CREATORS</Link>
                       </h2>
                     </SheetHeader>
 

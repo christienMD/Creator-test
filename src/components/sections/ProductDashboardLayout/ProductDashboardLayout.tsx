@@ -8,7 +8,7 @@ import {
 } from "../../ui/breadcrumb";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "../../ui/sidebar";
 import React from "react";
-import SearchBar from "../SearchBar/SearchBar";
+// import SearchBar from "../SearchBar/SearchBar";
 
 interface Props {
   children: React.ReactNode;
@@ -29,7 +29,7 @@ function ProductDashboardLayout({ children }: Props) {
               <BreadcrumbItem className="hidden md:block">
                 <BreadcrumbLink href="#" className=" ">
                   {" "}
-                  <SearchBar />
+                  {/* <SearchBar /> */}
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </BreadcrumbList>

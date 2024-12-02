@@ -33,18 +33,18 @@ function CreatorsComponent({ creators }: CreatorProps) {
             <h3 className="text-xl font-semibold mb-2">{creator.name}</h3>
             <Link
               to="/details"
-              className="text-blue-600 hover:text-blue-800 transition-colors duration-300"
+              className="text-gray-600  transition-colors duration-300"
             >
               See my products
             </Link>
           </div>
         ))}
       </div>
-      <div className="text-center mt-12">
+      {/* <div className="text-center mt-12">
         <button className="px-6 py-3 text-black  font-semibold w-full sm:w-auto  rounded-xl border-2  transition-all duration-300 hover:shadow-lg hover:bg-gray-100">
           See More
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

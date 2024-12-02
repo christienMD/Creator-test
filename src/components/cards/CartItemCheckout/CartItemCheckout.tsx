@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 // icon for the type of product
-import { GrDocumentPdf } from "react-icons/gr";
-import { CiImageOn, CiVideoOn, CiLink } from "react-icons/ci";
-import { AiOutlineAudio } from "react-icons/ai";
+import { GrDocumentPdf } from 'react-icons/gr';
+import { CiImageOn, CiVideoOn, CiLink } from 'react-icons/ci';
+import { AiOutlineAudio } from 'react-icons/ai';
 
 interface CartItemCardProps {
   image: string;
@@ -12,7 +12,7 @@ interface CartItemCardProps {
 }
 
 const getIconComponent = (imageUrlOrLink: string) => {
-  if (imageUrlOrLink.endsWith(".pdf")) {
+  if (imageUrlOrLink.endsWith('.pdf')) {
     return (
       <GrDocumentPdf
         className="absolute top-[11px] left-[17px]"
@@ -21,9 +21,9 @@ const getIconComponent = (imageUrlOrLink: string) => {
       />
     );
   } else if (
-    imageUrlOrLink.endsWith(".jpg") ||
-    imageUrlOrLink.endsWith(".jpeg") ||
-    imageUrlOrLink.endsWith(".png")
+    imageUrlOrLink.endsWith('.jpg') ||
+    imageUrlOrLink.endsWith('.jpeg') ||
+    imageUrlOrLink.endsWith('.png')
   ) {
     return (
       <CiImageOn
@@ -33,8 +33,8 @@ const getIconComponent = (imageUrlOrLink: string) => {
       />
     );
   } else if (
-    imageUrlOrLink.endsWith(".mp4") ||
-    imageUrlOrLink.endsWith(".mov")
+    imageUrlOrLink.endsWith('.mp4') ||
+    imageUrlOrLink.endsWith('.mov')
   ) {
     return (
       <CiVideoOn
@@ -44,8 +44,8 @@ const getIconComponent = (imageUrlOrLink: string) => {
       />
     );
   } else if (
-    imageUrlOrLink.endsWith(".mp3") ||
-    imageUrlOrLink.endsWith(".wav")
+    imageUrlOrLink.endsWith('.mp3') ||
+    imageUrlOrLink.endsWith('.wav')
   ) {
     return (
       <AiOutlineAudio
@@ -54,7 +54,7 @@ const getIconComponent = (imageUrlOrLink: string) => {
         color="#004C4C"
       />
     );
-  } else if (imageUrlOrLink.startsWith("http")) {
+  } else if (imageUrlOrLink.startsWith('http')) {
     return (
       <CiLink
         className="absolute top-[11px] left-[17px]"
@@ -70,10 +70,9 @@ const CartItemCheckout: React.FC<CartItemCardProps> = ({
   image,
   title,
   price,
-  
 }) => {
   return (
-    <div className="sm:flex md:grid md:grid-cols-2 items-center bg-[#FFFBFB] p-4 border-[0.5px] rounded-md border-[#39393980] gap-">
+    <div className="sm:flex md:grid md:grid-cols-2 items-center bg-[#FFFBFB] p-4 border-[0.5px] rounded-md border-[#39393980] mb-4">
       <div className="relative lg:w-full">
         {getIconComponent(image)}
         <img className="w-[70%] h-[100%] rounded" src={image} alt="" />

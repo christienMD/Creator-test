@@ -15,20 +15,20 @@ export const useApi = () => {
      */
     execute: async (
       url: string,
-      method: string = "GET",
+      method: string = 'GET',
       data?: string | null | object,
       token?: string
     ) => {
       const headers: FetchHeaderType = {
         Authorization: `Bearer ${token}`,
-        Accept: "application/json",
+        Accept: 'application/json',
       };
 
       // Only add Content-Type for non-FormData requests
       if (!(data instanceof FormData)) {
-        headers["Content-Type"] = "application/json";
+        headers['Content-Type'] = 'application/json';
       }
-      headers["Accept"] = "application/json";
+      headers['Accept'] = 'application/json';
 
       // let fetchPromises: Promise<Response | null> | null = null;
       const apiUrl = `${import.meta.env.VITE_BASE_URL}/api/v1${url}`;
@@ -39,7 +39,7 @@ export const useApi = () => {
       };
 
       // Only add body for non-GET requests
-      if (method !== "GET" && data) {
+      if (method !== 'GET' && data) {
         fetchOptions.body =
           data instanceof FormData ? data : JSON.stringify(data);
       }
@@ -48,7 +48,7 @@ export const useApi = () => {
         const res = await fetch(apiUrl, fetchOptions);
         return Promise.all([res.status, res.json(), res.ok]);
       } catch (error) {
-        console.error("Fetch error:", error);
+        console.error('Fetch error:', error);
         return Promise.resolve([null, null, false, null]);
       }
     }, //execute
@@ -65,7 +65,7 @@ export const useApi = () => {
       // console.log('====================================');
       if (!res[2]) {
         if (res[0] == 401) {
-          alert("Authentication error : " + res[1].message);
+          alert('Authentication error : ' + res[1].message);
         }
 
         throw new Error(res[1].message);
@@ -80,7 +80,7 @@ export const useApi = () => {
      * @returns Promise with registration response
      */
     registerCustomer: async (data: RegistrationEntity) => {
-      const res = await API.execute("/auth/register", "POST", data);
+      const res = await API.execute('/auth/register', 'POST', data);
       return API.processResponse(res);
     },
 
@@ -90,7 +90,7 @@ export const useApi = () => {
      * @returns Promise with registration response
      */
     registerCreator: async (data: RegistrationEntity) => {
-      const res = await API.execute("/auth/register", "POST", data);
+      const res = await API.execute('/auth/register', 'POST', data);
       return API.processResponse(res);
     },
 
@@ -100,7 +100,7 @@ export const useApi = () => {
      * @returns
      */
     login: async (data: LoginEntity) => {
-      const res = await API.execute("/auth/login", "POST", data);
+      const res = await API.execute('/auth/login', 'POST', data);
       return res;
     },
     /**
@@ -109,7 +109,7 @@ export const useApi = () => {
      * @returns
      */
     logout: async (token: string) => {
-      const res = await API.execute("/auth/logout", "POST", null, token);
+      const res = await API.execute('/auth/logout', 'POST', null, token);
       return res;
     },
 
@@ -118,7 +118,7 @@ export const useApi = () => {
      * @returns Promise with all products data
      */
     getAllProducts: async (nextPage: number) => {
-      const res = await API.execute(`/products?page=${nextPage}`, "GET", null);
+      const res = await API.execute(`/products?page=${nextPage}`, 'GET', null);
       return API.processResponse(res);
     },
 
@@ -127,7 +127,7 @@ export const useApi = () => {
      * @returns Promise with all categories data
      */
     getAllCategories: async () => {
-      const res = await API.execute("/categories", "GET", null);
+      const res = await API.execute('/categories', 'GET', null);
       return API.processResponse(res);
     },
 
@@ -139,19 +139,60 @@ export const useApi = () => {
     getProductsByCategory: async (categoryId: number) => {
       const res = await API.execute(
         `/categories/${categoryId}/products`,
-        "GET",
+        'GET',
         null
       );
       return API.processResponse(res);
     },
 
+    /**
+     * Saerch products with  parameters
+     * @param param - search parameter
+     * @returns Promise searched products
+     */
     searchProducts: async (param: string) => {
-      const res = await API.execute(`/products?search=${param}`, "GET", null);
+      const res = await API.execute(`/products?search=${param}`, 'GET', null);
       return API.processResponse(res);
     },
 
     checkoutProduct: async (data: CheckoutEntity, token: string) => {
-      const res = await API.execute("/cart/checkout", "POST", data, token);
+      const res = await API.execute('/cart/checkout', 'POST', data, token);
+      return res;
+    },
+
+    /**
+     * Purchaseproducts API request
+     * @param token - Authentication token
+     * @returns Promise with purchases products
+     */
+    getPurchsedProducts: async (token: string, nextPage: number) => {
+      const res = await API.execute(
+        `/purchases?page=${nextPage}`,
+        'GET',
+        null,
+        token
+      );
+      return API.processResponse(res);
+    },
+
+    /**
+     * Download products with specialized handling for file downloads
+     * @param productId - ID of the product to download
+     * @param token - Authentication token
+     * @returns Promise with download response or blob
+     */
+    downloadProducts: async (productId: number, token: string) => {
+      const res = await API.execute(
+        `/purchases/download/${productId}`,
+        'GET',
+        null,
+        token
+      );
+      return API.processResponse(res);
+    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    postProduct: async (data: any, token: string) => {
+      const res = await API.execute('/products', 'POST', data, token);
       return res;
     },
   };

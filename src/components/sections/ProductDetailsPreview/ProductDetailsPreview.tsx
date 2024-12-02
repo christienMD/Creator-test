@@ -16,16 +16,16 @@ import {
   getMediaByCollection,
 } from "@/utils/getMediaByCollection";
 
-interface productDetails {
+interface ProductDetailsPreviewProps {
   product: Product;
   price: number;
   title: string;
-  media: Media[] | null;
   category: Category;
   product_items: ProductItem[];
+  media: Media[]
 }
 
-const ProductDetailsPreview: React.FC<productDetails> = ({
+const ProductDetailsPreview: React.FC<ProductDetailsPreviewProps> = ({
   product,
   price,
   title,
@@ -33,8 +33,6 @@ const ProductDetailsPreview: React.FC<productDetails> = ({
   product_items,
 }) => {
   const [isFixed, setIsFixed] = useState(false);
-
-  const media = getMediaByCollection(product.relationships.media);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,45 +61,46 @@ const ProductDetailsPreview: React.FC<productDetails> = ({
       } right-16 mt-6 w-full lg:w-80  rounded-md bg-[#FFFCFC] `}
     >
       <div className="rounded-md shadow-md">
-        <div className=" h-32 w-full relative rounded-md border overflow-hidden">
-          {isVideoContent && (
-            <VideoContentPreview
-              previewUrl={media.preview || DEFAULT_IMAGE}
-              thumbnail={media.thumbnail || DEFAULT_IMAGE}
-            />
-          )}
-          {isImageContent && (
-            <ImageContentPreview
-              bannerImage={media.banner || DEFAULT_IMAGE}
-              altText={product.title}
-            />
-          )}
-          {isEbookContent && (
-            <EbookContentPreview
-              bannerImage={"/images/default.jpg"}
-              description={title}
-              altText={title}
-            />
-          )}
-          {isAudioContent && (
-            <AudioContentPreview
-              previewUrl={media.preview || DEFAULT_IMAGE}
-              bannerImage={media.banner || DEFAULT_IMAGE}
-            />
-          )}
-          {isLinkContent && (
-            <LinkContentPreview
-              bannerImage="/images/default.jpg"
-              description={title}
-            />
-          )}
-          {isZipContent && (
-            <ZipContentPreview
-              title={title}
-              // thumbnail={product}
-            />
-          )}
-        </div>
+        {product_items?.map((item) => {
+          const media = getMediaByCollection(item.relationships.media);
+
+          return (
+            <div
+              key={item.id}
+              className="h-32 w-full relative rounded-md border overflow-hidden"
+            >
+              {isVideoContent && (
+                <VideoContentPreview previewUrl={media.preview || ""} />
+              )}
+              {isImageContent && (
+                <ImageContentPreview
+                  altText={title}
+                  bannerImage={media.banner || DEFAULT_IMAGE}
+                />
+              )}
+              {isEbookContent && (
+                <EbookContentPreview
+                  bannerImage={media.banner || DEFAULT_IMAGE}
+                  description={title}
+                  altText={title}
+                />
+              )}
+              {isAudioContent && (
+                <AudioContentPreview
+                  previewUrl={media.preview || ""}
+                  bannerImage={media.banner || DEFAULT_IMAGE}
+                />
+              )}
+              {isLinkContent && (
+                <LinkContentPreview
+                  bannerImage={media.banner || DEFAULT_IMAGE}
+                  description={item.description}
+                />
+              )}
+              {isZipContent && <ZipContentPreview title={item.description} />}
+            </div>
+          );
+        })}
         <div className="flex flex-col items-center px-10">
           <p className="font-medium text-4xl text-black">{price} FCFA</p>
           <Link to="/checkout" className="w-full group">
@@ -126,13 +125,12 @@ const ProductDetailsPreview: React.FC<productDetails> = ({
             What's Included
           </p>
           <ul className="text-left w-full text-[#7C7C7C] mb-10">
-            {product_items.map((WhatAreInclude, index) => (
+            {product_items?.map((item) => (
               <li
                 className="flex items-center text-xs gap-[10px] p-[5px]"
-                key={index}
+                key={item.id}
               >
-                <TfiCheckBox className="text-[#222222] text-xl" />{" "}
-                {WhatAreInclude.title}{" "}
+                <TfiCheckBox className="text-[#222222] text-xl" /> {item.title}
               </li>
             ))}
           </ul>

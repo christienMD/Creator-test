@@ -52,7 +52,7 @@ const ProductCard = ({ product, creator, category }: Props) => {
       <div className="h-32 w-full relative rounded-md border overflow-hidden">
         {isVideoContent && (
           <VideoContentPreview
-            previewUrl={media.preview || DEFAULT_IMAGE}
+            previewUrl={media.preview || ""}
             thumbnail={media.thumbnail || DEFAULT_IMAGE}
           />
         )}
@@ -96,7 +96,7 @@ const ProductCard = ({ product, creator, category }: Props) => {
       </div>
 
       <Link
-        to={`/product/${category.name}/${category.id}`}
+        to={`/product/${category.name}/${product.id}`}
         className="cursor-pointer"
       >
         {/* content and name title */}

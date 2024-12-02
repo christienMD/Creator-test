@@ -1,23 +1,22 @@
-import ProductCard from "../../cards/ProductCard/ProductCard";
-import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
-import { useProducts } from "@/hooks/useProducts";
-import { ProductCardSkeleton } from "@/components/cards/ProductCardSkeleton/ProductCardSkeleton";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import ErrorComponent from "../ErrorComponent/ErrorComponent";
-import { useAuthToast } from "@/hooks/useAuthToast";
+import ProductCard from '../../cards/ProductCard/ProductCard';
+import ShowMoreButton from '../ShowMoreButton/ShowMoreButton';
+import { useProducts } from '@/hooks/useProducts';
+import { ProductCardSkeleton } from '@/components/cards/ProductCardSkeleton/ProductCardSkeleton';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import ErrorComponent from '../ErrorComponent/ErrorComponent';
+import { useAuthToast } from '@/hooks/useAuthToast';
 
 const pageSize = 1;
 const HomePageMain = () => {
   const [searchParams] = useSearchParams();
-  const categoryId = searchParams.get("id") ?? undefined;
-  const category = searchParams.get("category");
+  const categoryId = searchParams.get('id') ?? undefined;
+  const category = searchParams.get('category');
   const { products, isLoading, error } = useProducts(pageSize, categoryId);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const navigate = useNavigate();
   useAuthToast();
 
   const handleClick = () => {
-    navigate("/catalog");
+    navigate('/catalog');
   };
 
   if (error) {
@@ -27,7 +26,7 @@ const HomePageMain = () => {
           title="Error Loading Products"
           message={
             error?.message ||
-            "There was a problem loading the products. Please try again."
+            'There was a problem loading the products. Please try again.'
           }
         />
       </div>
@@ -66,7 +65,7 @@ const HomePageMain = () => {
             <p className="text-gray-600">
               {category
                 ? `We couldn't find any ${category} products at the moment. Please check back later or explore other categories.`
-                : "No products available at the moment. Please check back later."}
+                : 'No products available at the moment. Please check back later.'}
             </p>
           </div>
         )}

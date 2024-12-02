@@ -1,10 +1,9 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { useApi } from "@/utils/fetcher";
-import { ApiResponse, Product } from "@/types/entities";
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useApi } from '@/utils/fetcher';
+import { ApiResponse, Product } from '@/types/entities';
 
 export const useInfiniteProducts = (categoryId?: string) => {
   const { API } = useApi();
-
   const {
     data,
     isLoading,
@@ -13,7 +12,7 @@ export const useInfiniteProducts = (categoryId?: string) => {
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery<ApiResponse<Product> | Product[], Error>({
-    queryKey: ["infiniteProducts", categoryId],
+    queryKey: ['infiniteProducts', categoryId],
     queryFn: ({ pageParam }) => {
       if (categoryId) {
         return API.getProductsByCategory(parseInt(categoryId));

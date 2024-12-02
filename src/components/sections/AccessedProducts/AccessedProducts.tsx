@@ -5,7 +5,7 @@ import { useProducts } from '@/hooks/useProducts';
 import { Link } from 'react-router-dom';
 
 const AccessedProducts = () => {
-  const { products, isLoading } = useProducts();
+  const { products, isLoading, error } = useProducts();
 
   return (
     <div className="section-container">

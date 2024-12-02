@@ -1,12 +1,12 @@
-import { Creator, Rating, ProductItem, Category } from "@/types/entities";
+import { Creator, Rating, Category } from "@/types/entities";
+import { ReactNode } from "react";
 
 interface ProductDetails {
   title: string;
-  description: string;
-  ratings: Rating[];
+  description: ReactNode;
+  ratings?: Rating[];
   category: Category;
   creator: Creator;
-  product_items: ProductItem[];
 }
 
 const ProductDetailsInfo: React.FC<ProductDetails> = ({

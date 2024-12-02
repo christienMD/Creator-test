@@ -1,10 +1,6 @@
 import { UserRole } from '../types/index-d';
-import {
-  Category,
-  SubCategory,
-  User,
-  CartItem,
-} from '../types/entities';
+import { Category, SubCategory, User, CartItem } from '../types/entities';
+import { UploadFormValues } from '@/schemas/UploadSchema';
 
 export const subCategories: SubCategory[] = [
   {
@@ -149,8 +145,6 @@ export const categories: Category[] = [
     updated_at: '2024-01-06',
   },
 ];
-
-
 
 export const users: User[] = [
   {
@@ -609,3 +603,75 @@ export const dashboardData: DashboardItem[] = [
   },
 ];
 
+// utils/data.ts
+export const productFormField = [
+  {
+    name: 'category_id',
+    label: 'Product Category',
+  },
+  // {
+  //   name: "file",
+  //   label: "Upload file",
+  // },
+  {
+    name: 'title',
+    label: 'Product Title',
+  },
+  {
+    name: 'price',
+    label: 'Product Price',
+  },
+  {
+    name: 'description',
+    label: 'Product Description',
+  },
+  {
+    name: 'preview_video',
+    label: 'Preview Video',
+  },
+  {
+    name: 'banner',
+    label: 'Banner Image',
+  },
+  {
+    name: 'thumbnail',
+    label: 'Thumbnail',
+  },
+];
+export const productItemFormField = [
+  {
+    name: 'category_id',
+    label: 'Product Category',
+  },
+  // {
+  //   name: "file",
+  //   label: "Upload file",
+  // },
+  {
+    name: 'title',
+    label: 'Product Title',
+  },
+  {
+    name: 'order',
+    label: 'Order',
+  },
+  {
+    name: 'is_downloadable',
+    label: 'Downloadable',
+  },
+  {
+    name: 'description',
+    label: 'Product Description',
+  },
+  {
+    name: 'media',
+    label: 'Media',
+  },
+];
+
+// import { UploadFormValues } from "@/components/sections/UploadForm/UploadForm";
+
+export const inputNames: (keyof UploadFormValues)[] = [
+  'preview_video',
+  'banner',
+];
