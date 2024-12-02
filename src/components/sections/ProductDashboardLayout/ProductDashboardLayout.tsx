@@ -8,6 +8,7 @@ import {
 } from "../../ui/breadcrumb";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "../../ui/sidebar";
 import React from "react";
+import { useAuthToast } from "@/hooks/useAuthToast";
 // import SearchBar from "../SearchBar/SearchBar";
 
 interface Props {
@@ -15,6 +16,8 @@ interface Props {
 }
 
 function ProductDashboardLayout({ children }: Props) {
+  useAuthToast();
+
   return (
     <SidebarProvider>
       <AppSidebar />

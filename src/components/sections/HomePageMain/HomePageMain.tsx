@@ -4,7 +4,6 @@ import { useProducts } from '@/hooks/useProducts';
 import { ProductCardSkeleton } from '@/components/cards/ProductCardSkeleton/ProductCardSkeleton';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import ErrorComponent from '../ErrorComponent/ErrorComponent';
-import { useAuthToast } from '@/hooks/useAuthToast';
 
 const pageSize = 1;
 const HomePageMain = () => {
@@ -13,7 +12,6 @@ const HomePageMain = () => {
   const category = searchParams.get('category');
   const { products, isLoading, error } = useProducts(pageSize, categoryId);
   const navigate = useNavigate();
-  useAuthToast();
 
   const handleClick = () => {
     navigate('/catalog');

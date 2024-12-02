@@ -11,7 +11,6 @@ import { AuthUser, LoginEntity } from "@/types/entities";
 // import { toast } from "react-toastify";
 import { useApi } from "@/utils/fetcher";
 import { ErrorAlert } from "../ErrorAlert/ErrorAlert";
-import { useAuthToast } from "@/hooks/useAuthToast";
 
 
 interface ApiError {
@@ -27,7 +26,6 @@ function LoginForm() {
   const [apiError, setApiError] = useState<ApiError | null>(null);
   const navigate = useNavigate();
   const { API } = useApi();
-  useAuthToast();
 
   const {
     register,
@@ -93,7 +91,7 @@ function LoginForm() {
         state: {
           showWelcome: true,
           userName: loginResponse.name,
-        },
+        },  
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

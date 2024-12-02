@@ -20,7 +20,7 @@ export function UserProfile() {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState<AuthUser | null>(null);
   // console.log("user: ", user);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const { API } = useApi();
    const navigate = useNavigate();
 
@@ -32,36 +32,35 @@ export function UserProfile() {
   }, []);
 
  
-  const handleLogout = async () => {
-    try {
-      setIsLoading(true);
-      const token = localStorage.getItem("auth_token");
+ const handleLogout = async () => {
+   try {
+     setIsLoggingOut(true); // Set logging out state
+     const token = localStorage.getItem("auth_token");
 
-      if (token) {
-        await API.logout(token);
-      }
+     if (token) {
+       await API.logout(token);
+     }
 
-      localStorage.removeItem("auth_token");
-      localStorage.removeItem("userData");
+     localStorage.removeItem("auth_token");
+     localStorage.removeItem("userData");
 
-      navigate("/login", {
-      replace: true,
-      state: {
-        loggedOut: true
-      },
+     navigate("/login", {
+       replace: true,
+       state: {
+         loggedOut: true,
+       },
+     });
+   } catch (error) {
+     console.error("Logout failed:", error);
+     localStorage.removeItem("auth_token");
+     localStorage.removeItem("userData");
+     toast.error("Error during logout");
+     navigate("/login");
+   } finally {
+     setIsLoggingOut(false);
+   }
+ };
 
-
-    });
-    } catch (error) {
-      console.error("Logout failed:", error);
-      localStorage.removeItem("auth_token");
-      localStorage.removeItem("userData");
-      toast.error("Error during logout");
-      navigate("/login");
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const getInitials = (name: string) => {
     return name
@@ -90,7 +89,14 @@ export function UserProfile() {
   ];
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+    <DropdownMenu
+      open={isOpen || isLoggingOut}
+      onOpenChange={(open) => {
+        if (!isLoggingOut) {
+          setIsOpen(open);
+        }
+      }}
+    >
       <DropdownMenuTrigger asChild>
         <button className="relative w-[2.375rem] h-[2.375rem] inline-flex justify-center items-center rounded-full text-sm font-semibold text-white hover:bg-creator-bg-300 focus:outline-none focus:ring-2 focus:ring-creator-bg-300 focus:ring-offset-2 focus:ring-offset-white transition-all">
           <Avatar className="w-[38px] h-[38px]">
@@ -151,12 +157,13 @@ export function UserProfile() {
           <button
             onClick={handleLogout}
             className="w-full text-left cursor-pointer"
+            disabled={isLoggingOut}
           >
-            {isLoading ? (
-              <>
+            {isLoggingOut ? (
+              <div className="flex items-center">
                 <Loader className="w-4 h-4 mr-2 animate-spin" />
-                Logging out...
-              </>
+                <span>Logging out...</span>
+              </div>
             ) : (
               "Logout"
             )}
