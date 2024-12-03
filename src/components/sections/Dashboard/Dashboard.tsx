@@ -1,6 +1,8 @@
 import DashboardChart from "../CreatorsDashboardChart/CreatorsDashboardChart";
 import { dashboardData } from "../../../utils/data";
 import { ArrowDownLeftFromSquare } from "lucide-react";
+import { AuthUser } from "@/types/entities";
+import { useEffect, useState } from "react";
 
 type DashboardTitle = "Buyers" | "Revenue" | "Content Bought";
 
@@ -11,6 +13,7 @@ interface DashboardItem {
 }
 
 const Dashboard = () => {
+  const [user, setUser] = useState<AuthUser | null>(null);
   const buyersData =
     dashboardData.find((data) => data.title === "Buyers")?.data || [];
   const revenueData =
@@ -41,10 +44,17 @@ const Dashboard = () => {
     return dataItem.labels[maxIndex];
   };
 
+   useEffect(() => {
+     const userDataString = localStorage.getItem("userData");
+     if (userDataString) {
+       setUser(JSON.parse(userDataString));
+     }
+   }, []);
+
   return (
     <div className="max-w-7xl  p-4 sm:p-6">
       <h2 className="text-3xl font-semibold mb-1">Dashboard</h2>
-      <p>Welcome back, Christian</p>
+      <p>Welcome back , {user?.name}</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-3 gap-4 mt-10">
         {" "}

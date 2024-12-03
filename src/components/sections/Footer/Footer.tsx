@@ -18,8 +18,8 @@ interface FooterProps {
 
 function Footer({ footerData }: FooterProps) {
   return (
-    <footer className="section-container">
-      <div className="px-4 justify-between">
+    <footer className="section-container ">
+      <div className="px-4 justify-between ">
         <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8">
           <div className="space-y-4">
             <Link to="/">
@@ -44,12 +44,12 @@ function Footer({ footerData }: FooterProps) {
               <ul className="space-y-2">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-white hover:text-gray-900 hover:underline"
+                    <Link
+                      to={link.href}
+                      className="text-sm text-white hover:text-gray-400 hover:underline"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

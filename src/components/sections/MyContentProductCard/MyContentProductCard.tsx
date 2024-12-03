@@ -17,6 +17,7 @@ import { Download } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { PurchaseAudioProduct } from '../PurchaseAudioProduct/PurchaseAudioProduct';
+import React from 'react';
 // import useCartStore from '@/stores/useCartStore';
 
 interface ProductCardProps {
@@ -88,6 +89,56 @@ const MyContentProductCard = ({
   //   }
   // };
 
+  // const downloadProduct = async () => {
+  //   try {
+  //     setIsDownloading(true);
+
+  //     const response = await fetch(
+  //       `${import.meta.env.VITE_BASE_URL}/api/v1/purchases/download/${
+  //         product.id
+  //       }`,
+  //       {
+  //         method: 'GET',
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       // Handle error responses
+  //       const contentType = response.headers.get('Content-Type');
+  //       if (contentType && contentType.includes('application/json')) {
+  //         const errorData = await response.json();
+  //         throw new Error(errorData.message || 'Failed to download product');
+  //       } else {
+  //         throw new Error('Unexpected response from the server');
+  //       }
+  //     }
+
+  //     // Handle file download
+  //     const blob = await response.blob();
+  //     const url = window.URL.createObjectURL(blob);
+
+  //     const fileName = JSON.stringify((product.title).zip); // Customize if needed
+  //     const link = document.createElement('a');
+  //     link.href = url;
+  //     link.download = fileName;
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     link.remove();
+
+  //     window.URL.revokeObjectURL(url);
+
+  //     toast.success('Download successful');
+  //   } catch (error) {
+  //     console.error('Download error:', error);
+  //     toast.error('An error occurred while downloading the product');
+  //   } finally {
+  //     setIsDownloading(false);
+  //   }
+  // };
+
   const downloadProduct = async () => {
     try {
       setIsDownloading(true);
@@ -105,7 +156,6 @@ const MyContentProductCard = ({
       );
 
       if (!response.ok) {
-        // Handle error responses
         const contentType = response.headers.get('Content-Type');
         if (contentType && contentType.includes('application/json')) {
           const errorData = await response.json();
@@ -115,11 +165,25 @@ const MyContentProductCard = ({
         }
       }
 
+      // Get the filename from the Content-Disposition header or generate it
+      const contentDisposition = response.headers.get('Content-Disposition');
+      let fileName = `${product.title}.zip`; // Default fallback
+
+      if (contentDisposition) {
+        // Extract filename from Content-Disposition header if available
+        const filenameMatch = contentDisposition.match(/filename="?(.+)"?/i);
+        if (filenameMatch) {
+          fileName = filenameMatch[1];
+        }
+      }
+
+      // Sanitize filename to remove invalid characters
+      fileName = fileName.replace(/[^a-z0-9._ -]/gi, '_');
+
       // Handle file download
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
 
-      const fileName = 'my_products.zip'; // Customize if needed
       const link = document.createElement('a');
       link.href = url;
       link.download = fileName;

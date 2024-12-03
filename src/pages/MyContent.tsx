@@ -109,63 +109,65 @@ function MyContentPage() {
   // Regular rendering logic
   return (
     <PublicPageLayout>
-      <h1 className="catalog-heading mb-5 p-10 section-container">
-        My Content{' '}
-      </h1>
-      <main className="container mx-auto px-6 flex-grow flex flex-col lg:flex-row mt-4">
-        {/* <div className="lg:sticky top-5 lg:w-[280px] lg:flex-shrink-0">
+      <div className="min-h-screen">
+        <h1 className="catalog-heading mb-5 p-10 section-container">
+          My Content{' '}
+        </h1>
+        <main className="container mx-auto px-6 flex-grow flex flex-col lg:flex-row mt-4">
+          {/* <div className="lg:sticky top-5 lg:w-[280px] lg:flex-shrink-0">
           <Sidemenu />
         </div> */}
-        <div className="flex-grow ml-0 lg:ml-6 mb-4">
-          {isLoading ? (
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 lg:g-4">
-              {Array(12)
-                .fill(null)
-                .map((_, index) => (
-                  <ProductCardSkeleton key={`skeleton-${index}`} />
+          <div className="flex-grow ml-0 lg:ml-6 mb-12">
+            {isLoading ? (
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 lg:g-4">
+                {Array(12)
+                  .fill(null)
+                  .map((_, index) => (
+                    <ProductCardSkeleton key={`skeleton-${index}`} />
+                  ))}
+              </div>
+            ) : purchases && purchases.length > 0 ? (
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 lg:g-4">
+                {purchases.map((product) => (
+                  <MyContentProductCard
+                    key={product.id}
+                    product={product}
+                    creator={product.relationships.creator}
+                    category={product.relationships.category}
+                  />
                 ))}
-            </div>
-          ) : purchases && purchases.length > 0 ? (
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 lg:g-4">
-              {purchases.map((product) => (
-                <MyContentProductCard
-                  key={product.id}
-                  product={product}
-                  creator={product.relationships.creator}
-                  category={product.relationships.category}
-                />
-              ))}
-            </div>
-          ) : (
-            <Card className="w-full">
-              <CardHeader>
-                <CardTitle className="text-2xl">
-                  No Products Purchased
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-4">
-                  You haven't purchased any products yet. Browse our catalog and
-                  make a purchase to access your content.
-                </p>
-                <ShowMoreButton
-                  label="View Full Catalog"
-                  onClick={handleClick}
-                  className="mt-4"
-                />
-              </CardContent>
-            </Card>
-          )}
-          {purchases.length >= 12 && (
-            <ShowMoreButton
-              label={isFetchingNextPage ? 'Loading...' : 'Show More'}
-              onClick={() => fetchNextPage()}
-              disabled={isFetchingNextPage || !hasNextPage}
-              className="mt-4"
-            />
-          )}
-        </div>
-      </main>
+              </div>
+            ) : (
+              <Card className="w-full">
+                <CardHeader>
+                  <CardTitle className="text-2xl">
+                    No Products Purchased
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-4">
+                    You haven't purchased any products yet. Browse our catalog
+                    and make a purchase to access your content.
+                  </p>
+                  <ShowMoreButton
+                    label="View Full Catalog"
+                    onClick={handleClick}
+                    className="mt-4"
+                  />
+                </CardContent>
+              </Card>
+            )}
+            {purchases.length >= 12 && (
+              <ShowMoreButton
+                label={isFetchingNextPage ? 'Loading...' : 'Show More'}
+                onClick={() => fetchNextPage()}
+                disabled={isFetchingNextPage || !hasNextPage}
+                className="mt-4"
+              />
+            )}
+          </div>
+        </main>
+      </div>
     </PublicPageLayout>
   );
 }

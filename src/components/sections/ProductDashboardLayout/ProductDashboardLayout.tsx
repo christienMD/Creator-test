@@ -31,7 +31,6 @@ function ProductDashboardLayout({ children }: Props) {
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
                 <BreadcrumbLink href="#" className=" ">
-                  {" "}
                   {/* <SearchBar /> */}
                 </BreadcrumbLink>
               </BreadcrumbItem>

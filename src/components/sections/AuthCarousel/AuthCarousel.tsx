@@ -22,8 +22,12 @@ const AuthCarousel: React.FC = () => {
       showArrows={false}
     >
       {images.map((image, index) => (
-        <div key={index}>
-          <img src={image.src} alt={image.alt} className="rounded" />
+        <div key={index} className="h-[525px]">
+          <img
+            src={image.src}
+            alt={image.alt}
+            className="rounded object-cover w-full h-full"
+          />
         </div>
       ))}
     </Carousel>

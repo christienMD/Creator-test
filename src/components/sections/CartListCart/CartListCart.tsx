@@ -44,11 +44,15 @@ const CartListCart: React.FC<CartSectionProps> = ({
           cartItems.map((cardItem) => (
             <div key={cardItem.id}>
               <CartItemCard
-                image={cardItem.relationships.media.at(0)?.original_url || ""}
+                image={
+                  cardItem.relationships?.media?.length > 0
+                    ? cardItem.relationships.media[0]?.original_url
+                    : "/default-image.png"
+                }
                 title={cardItem.title}
                 price={cardItem.price}
                 author={"christien"}
-                onDelete={() => setSelectedItemId(cardItem.id)} // Open alert for deleting an item
+                onDelete={() => setSelectedItemId(cardItem.id)}
               />
             </div>
           ))

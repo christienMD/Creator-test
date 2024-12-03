@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function BuyComponent() {
   return (
-    <div className="container mx-auto px-4 py-8 md:py-16">
+    <div className="section-container px-4 py-8 md:py-16">
       <div className="flex flex-col md:flex-row-reverse items-center justify-between gap-8 md:gap-12">
         <div className="w-full md:w-2/5 max-w-sm mx-auto">
           <div className="rounded-2xl overflow-hidden shadow-xl aspect-w-4 aspect-h-3">
@@ -18,9 +18,12 @@ function BuyComponent() {
             How to Buy Product?
           </h1>
           <p className="text-base md:text-lg leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-            repellat ipsa ipsum adipisci, lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Veritatis repellat ipsa ipsum adipisci.
+            Purchasing a product is simple and hassle-free! Browse through our
+            catalog to find what you need, add your chosen products to the cart,
+            and proceed to checkout. Once there, confirm your details, complete
+            the payment, and you're done! Enjoy quick and secure transactions
+            with products delivered right to your content page. Start shopping
+            now and experience seamless buying!
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to="/home">

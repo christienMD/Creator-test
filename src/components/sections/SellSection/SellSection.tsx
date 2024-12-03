@@ -18,9 +18,10 @@ function SellComponent() {
             How to Sell your Product?
           </h1>
           <p className="text-base md:text-lg leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-            repellat ipsa ipsum adipisci, lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Veritatis repellat ipsa ipsum adipisci.
+            Create an account, list your product with clear details and visuals,
+            and set a competitive price. Engage with buyers, provide great
+            service, and manage your sales easily. Start earning and growing
+            your business today!
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to="/creator/product/new">

@@ -342,27 +342,27 @@ export const faqs = [
   {
     question: 'What is this platform about?',
     answer:
-      'Our platform connects content creators with buyers, facilitating the sale and purchase of digital content.',
+      'Our platform connects content creators with buyers, facilitating the sale and purchase of digital products.',
   },
   {
-    question: 'How do I start selling my content?',
+    question: 'How do I start selling my product?',
     answer:
-      'To start selling, create an account, upload your content, set your prices, and start promoting your work to potential buyers.',
+      'To start selling, create an account, upload your product, set your prices, and start promoting your work to potential buyers.',
   },
   {
-    question: 'Is my content protected?',
+    question: 'Is my product protected?',
     answer:
-      "Yes, we use industry-standard security measures to protect your content and ensure it's only accessible to authorized buyers.",
+      "Yes, we use industry-standard security measures to protect your product and ensure it's only accessible to authorized buyers.",
   },
   {
-    question: 'Is my content protected?',
+    question: 'How do I buy a product?',
     answer:
-      "Yes, we use industry-standard security measures to protect your content and ensure it's only accessible to authorized buyers.",
+      'Browse through the catalog, select the product you like, add it to your cart, and proceed to secure checkout to complete your purchase.',
   },
   {
-    question: 'Is my content protected?',
+    question: 'What payment methods are supported?',
     answer:
-      "Yes, we use industry-standard security measures to protect your content and ensure it's only accessible to authorized buyers.",
+      'We accept a variety of payment methods, including MTN money, ORANGE money,to ensure a seamless transaction process.',
   },
 ];
 
@@ -464,21 +464,17 @@ export const quotes = [
 
 export const footerData = [
   {
-    title: 'Product',
+    title: 'Features',
     links: [
-      { label: 'Product 1', href: '#' },
-      { label: 'Product 2', href: '#' },
-      { label: 'Product 3', href: '#' },
-      { label: 'Product 4', href: '#' },
+      { label: 'Buy Product', href: '/catalog' },
+      { label: 'Start Selling', href: '/creator/product/new' },
     ],
   },
   {
-    title: 'Features',
+    title: 'Support & Ressources',
     links: [
-      { label: 'Feature 1', href: '#' },
-      { label: 'Feature 2', href: '#' },
-      { label: 'Feature 3', href: '#' },
-      { label: 'Feature 4', href: '#' },
+      { label: 'FAQs', href: '' },
+      { label: 'About', href: '/about' },
     ],
   },
 ];

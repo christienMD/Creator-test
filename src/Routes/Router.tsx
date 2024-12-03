@@ -1,21 +1,22 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import NotFoundPage from '@/pages/NotFoundPage';
-import HomePage from '@/pages/Home';
-import AboutPage from '@/pages/About';
-import LandingPage from '@/pages/Landing';
-import CatalogPage from '@/pages/Catalog';
-import MyContentPage from '@/pages/MyContent';
-import DetailsPage from '@/pages/Details';
-import CartPage from '@/pages/Cart';
-import CheckoutPage from '@/pages/ProductCheckout';
-import LoginPage from '@/pages/Login';
-import SignupPage from '@/pages/Signup';
-import CreatorsHomePage from '@/pages/CreatorsHomePage';
-import CreatorsDashboard from '@/pages/CreatorsDashboard';
-import Library from '@/pages/Library';
-import NewProduct from '@/pages/NewProduct';
-import PrivateRoutes from '@/pages/PrivateRoutes';
-import Success from '@/pages/Success';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import NotFoundPage from "@/pages/NotFoundPage";
+import HomePage from "@/pages/Home";
+import AboutPage from "@/pages/About";
+import LandingPage from "@/pages/Landing";
+import CatalogPage from "@/pages/Catalog";
+import MyContentPage from "@/pages/MyContent";
+import DetailsPage from "@/pages/Details";
+import CartPage from "@/pages/Cart";
+import CheckoutPage from "@/pages/ProductCheckout";
+import LoginPage from "@/pages/Login";
+import SignupPage from "@/pages/Signup";
+import CreatorsHomePage from "@/pages/CreatorsHomePage";
+import CreatorsDashboard from "@/pages/CreatorsDashboard";
+import Library from "@/pages/Library";
+import NewProduct from "@/pages/NewProduct";
+import PrivateRoutes from "@/pages/PrivateRoutes";
+import Success from "@/pages/Success";
+import ResetPassword from "@/pages/PasswordReset";
 
 const router = createBrowserRouter([
   // Public routes
@@ -30,33 +31,34 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-
     element: <LoginPage />,
   },
   {
     path: "/signup",
     element: <SignupPage />,
   },
-
-  {
-    path: "/catalog",
-    element: <CatalogPage />,
-  },
-
   {
     path: "/home",
     element: <HomePage />,
   },
-
+  {
+    path: "/catalog",
+    element: <CatalogPage />,
+  },
   {
     path: "/product/:type/:slug",
     element: <DetailsPage />,
   },
+  {
+    path: "/password-reset",
+    element: <ResetPassword />,
+  },
 
-  // Protected routes for all authenticated users
+  // All protected routes under a single PrivateRoutes wrapper
   {
     element: <PrivateRoutes />,
     children: [
+      // User routes
       {
         path: "/my-content",
         element: <MyContentPage />,
@@ -69,17 +71,7 @@ const router = createBrowserRouter([
         path: "/checkout",
         element: <CheckoutPage />,
       },
-      {
-        path: "/success",
-        element: <Success />,
-      },
-    ],
-  },
-
-  // Protected creator routes
-  {
-    element: <PrivateRoutes />,
-    children: [
+      // Creator routes
       {
         path: "/creator/home",
         element: <CreatorsHomePage />,
@@ -96,8 +88,9 @@ const router = createBrowserRouter([
         path: "/creator/product/new",
         element: <NewProduct />,
       },
+      // Shared protected routes
       {
-        path: "/checkout/success",
+        path: "/success",
         element: <Success />,
       },
     ],

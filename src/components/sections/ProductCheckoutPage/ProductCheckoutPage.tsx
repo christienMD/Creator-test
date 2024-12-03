@@ -45,10 +45,10 @@ const ProductCheckout = () => {
       if (!phoneNumber.trim()) {
         toast.error("Please input your phone number", {
           position: "top-right",
-          autoClose: 3000, // Automatically close after 5 seconds
+          autoClose: 3000, 
           
         });
-        return; // Stop execution if phone number is not provided
+        return; 
       }
 
       setIsLoading(true);

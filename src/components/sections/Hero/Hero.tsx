@@ -7,11 +7,11 @@ function Hero() {
       <div className="flex flex-col md:flex-row items-center justify-between gap-12">
         <div className="md:w-1/2 space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-            Create, connect, earn.
+            Create, sell, and earn.
           </h1>
           <p className="text-lg">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-            repellat ipsa ipsum adipisci .
+            Create your vision, sell your products, and earn money—unlock
+            endless possibilities with every idea you bring to life!
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to="/catalog">

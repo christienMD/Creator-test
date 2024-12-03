@@ -5,7 +5,7 @@ import { useProducts } from '@/hooks/useProducts';
 import { Link } from 'react-router-dom';
 
 const AccessedProducts = () => {
-  const { products, isLoading} = useProducts();
+  const { products, isLoading } = useProducts();
 
   return (
     <div className="section-container">
@@ -13,8 +13,8 @@ const AccessedProducts = () => {
         <div className="text-center mb-10">
           <h2 className="heading">Most accessed product</h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Discover the product everyone loves—crafted to perfection, designed
+            to meet your needs, and trusted by countless users!
           </p>
         </div>
 

@@ -1,14 +1,4 @@
-
-
-import {
- 
-  ChevronsUpDown,
- 
-  Loader,
- 
-  LogOut,
-  
-} from "lucide-react";
+import { ChevronsUpDown, Loader, LogOut } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 import {
@@ -31,15 +21,13 @@ import { useApi } from "@/utils/fetcher";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export function NavUser({
-  user,
-}: {
-  user: AuthUser | null;
-}) {
+export function NavUser({ user }: { user: AuthUser | null }) {
   const { isMobile } = useSidebar();
-   const [isLoading, setIsLoading] = useState(false);
-   const { API } = useApi();
-   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const { API } = useApi();
+  const navigate = useNavigate();
+
   const getInitials = (name: string) => {
     return name
       .split(" ")
@@ -48,53 +36,52 @@ export function NavUser({
       .toUpperCase();
   };
 
-    const handleLogout = async () => {
-      try {
-        setIsLoading(true);
-        const token = localStorage.getItem("auth_token");
+  const handleLogout = async (e: React.MouseEvent) => {
+    // Prevent the dropdown from closing
+    e.preventDefault();
+    try {
+      setIsLoading(true);
+      const token = localStorage.getItem("auth_token");
 
-        if (token) {
-          await API.logout(token);
-        }
-
-        localStorage.removeItem("auth_token");
-        localStorage.removeItem("userData");
-
-        navigate("/login", {
-          replace: true,
-          state: {
-            loggedOut: true,
-          },
-        });
-      } catch (error) {
-        console.error("Logout failed:", error);
-        localStorage.removeItem("auth_token");
-        localStorage.removeItem("userData");
-        toast.error("Error during logout");
-        navigate("/login");
-      } finally {
-        setIsLoading(false);
+      if (token) {
+        await API.logout(token);
       }
-    };
+
+      localStorage.removeItem("auth_token");
+      localStorage.removeItem("userData");
+
+      setIsOpen(false);
+      navigate("/login", {
+        replace: true,
+        state: {
+          loggedOut: true,
+        },
+      });
+    } catch (error) {
+      console.error("Logout failed:", error);
+      localStorage.removeItem("auth_token");
+      localStorage.removeItem("userData");
+      toast.error("Error during logout");
+      setIsOpen(false);
+      navigate("/login");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu>
+        <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              //   className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
               className={`data-[state=open]:bg-sidebar-accent ${
                 user?.name === "Salome"
                   ? "hover:bg-transparent "
                   : "data-[state=open]:text-sidebar-accent-foreground"
               }`}
             >
-              {/* <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg text-black">CN</AvatarFallback>
-              </Avatar> */}
               <Avatar className="w-[38px] h-[38px]">
                 {user?.profile_pic && (
                   <AvatarImage
@@ -138,8 +125,17 @@ export function NavUser({
             </DropdownMenuLabel>
 
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout} className="hover:cursor-pointer">
-              {isLoading && <Loader className="animate-spin h-8 w-8" />}
+            <DropdownMenuItem
+              onSelect={(e) => e.preventDefault()}
+              onClick={handleLogout}
+              className="hover:cursor-pointer"
+            >
+              {isLoading && (
+                <div className="flex gap-2">
+                  <span>Logging out...</span>
+                  <Loader className="animate-spin h-7 w-7" />
+                </div>
+              )}
               {!isLoading && (
                 <div className="flex gap-3">
                   <LogOut />

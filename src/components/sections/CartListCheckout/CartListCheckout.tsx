@@ -43,7 +43,11 @@ const CartListCheckout: React.FC<CartListCheckoutProps> = ({
           cartItems.map((cardItem) => (
             <div key={cardItem.id}>
               <CartItemCheckout
-                image={cardItem.relationships.media.at(0)?.original_url || ''}
+                image={
+                  cardItem.relationships?.media?.length > 0
+                    ? cardItem.relationships.media[0]?.original_url
+                    : "/default-image.png"
+                }
                 title={cardItem.title}
                 price={cardItem.price}
                 onDelete={() => handleDelete(cardItem.id)}

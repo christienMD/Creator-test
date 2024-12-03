@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
-import { TfiCheckBox } from "react-icons/tfi";
-import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa6";
-import { Category, Media, Product, ProductItem } from "@/types/entities";
+import React, { useEffect, useState } from 'react';
+import { TfiCheckBox } from 'react-icons/tfi';
+import { Link } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa6';
+import { Category, Media, Product, ProductItem } from '@/types/entities';
 
-import EbookContentPreview from "../EbookContentPreview/EbookContentPreview";
-import AudioContentPreview from "../AudioContentPeview/AudioContentPreview";
-import { LinkContentPreview } from "../LinkContentPreview/LinkContentPreview";
-import { ZipContentPreview } from "../ZipContentPreview/ZipContentPreview";
-import useCartStore from "@/stores/useCartStore";
-import { VideoContentPreview } from "../VideoContentPreview/VideoContentPreview";
-import ImageContentPreview from "../ImageContentPreview/ImageContentPreview";
+import EbookContentPreview from '../EbookContentPreview/EbookContentPreview';
+import AudioContentPreview from '../AudioContentPeview/AudioContentPreview';
+import { LinkContentPreview } from '../LinkContentPreview/LinkContentPreview';
+import { ZipContentPreview } from '../ZipContentPreview/ZipContentPreview';
+import useCartStore from '@/stores/useCartStore';
+import { VideoContentPreview } from '../VideoContentPreview/VideoContentPreview';
+import ImageContentPreview from '../ImageContentPreview/ImageContentPreview';
 import {
   DEFAULT_IMAGE,
   getMediaByCollection,
-} from "@/utils/getMediaByCollection";
+} from '@/utils/getMediaByCollection';
+import { CourseContentPreview } from '../CourseContentPreview/CourseContentPreview';
 
 interface ProductDetailsPreviewProps {
   product: Product;
@@ -22,13 +23,12 @@ interface ProductDetailsPreviewProps {
   title: string;
   category: Category;
   product_items: ProductItem[];
-  media: Media[]
+  media: Media[];
 }
 
 const ProductDetailsPreview: React.FC<ProductDetailsPreviewProps> = ({
   product,
   price,
-  title,
   category,
   product_items,
 }) => {
@@ -40,16 +40,19 @@ const ProductDetailsPreview: React.FC<ProductDetailsPreviewProps> = ({
       setIsFixed(window.scrollY > topOffset);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isVideoContent = category.name === "video";
-  const isImageContent = category.name === "image";
-  const isEbookContent = category.name === "ebook";
-  const isAudioContent = category.name === "audio";
-  const isLinkContent = category.name === "link";
-  const isZipContent = category.name === "zip";
+  const isVideoContent = category.name === 'video';
+  const isImageContent = category.name === 'image';
+  const isEbookContent = category.name === 'pdf';
+  const isAudioContent = category.name === 'audio';
+  const isLinkContent = category.name === 'link';
+  const isZipContent = category.name === 'zip';
+  const isCourseContent = category.name === 'course';
+  const media = getMediaByCollection(product.relationships.media);
+  console.log('media+++++++++++++ media: ', media);
 
   // to add to cart
   const addProductToCart = useCartStore((state) => state.addProductToCart);
@@ -57,50 +60,57 @@ const ProductDetailsPreview: React.FC<ProductDetailsPreviewProps> = ({
   return (
     <div
       className={`${
-        isFixed ? "lg:fixed top-16" : "lg:absolute lg:top-[120px]"
-      } right-16 mt-6 w-full lg:w-80  rounded-md bg-[#FFFCFC] `}
+        isFixed ? 'lg:fixed top-16' : 'lg:absolute lg:top-[120px]'
+      } right-16 mt-6 w-full lg:w-80 rounded-md bg-[#FFFCFC]`}
     >
       <div className="rounded-md shadow-md">
-        {product_items?.map((item) => {
-          const media = getMediaByCollection(item.relationships.media);
-
-          return (
-            <div
-              key={item.id}
-              className="h-32 w-full relative rounded-md border overflow-hidden"
-            >
-              {isVideoContent && (
-                <VideoContentPreview previewUrl={media.preview || ""} />
-              )}
-              {isImageContent && (
-                <ImageContentPreview
-                  altText={title}
-                  bannerImage={media.banner || DEFAULT_IMAGE}
-                />
-              )}
-              {isEbookContent && (
-                <EbookContentPreview
-                  bannerImage={media.banner || DEFAULT_IMAGE}
-                  description={title}
-                  altText={title}
-                />
-              )}
-              {isAudioContent && (
-                <AudioContentPreview
-                  previewUrl={media.preview || ""}
-                  bannerImage={media.banner || DEFAULT_IMAGE}
-                />
-              )}
-              {isLinkContent && (
-                <LinkContentPreview
-                  bannerImage={media.banner || DEFAULT_IMAGE}
-                  description={item.description}
-                />
-              )}
-              {isZipContent && <ZipContentPreview title={item.description} />}
-            </div>
-          );
-        })}
+        {media && (
+          <div className="h-32 w-full relative rounded-md border overflow-hidden">
+            {isVideoContent && (
+              <VideoContentPreview
+                previewUrl={media.preview || ''}
+                thumbnail={media.thumbnail || DEFAULT_IMAGE}
+              />
+            )}
+            {isImageContent && (
+              <ImageContentPreview
+                bannerImage={media.banner || DEFAULT_IMAGE}
+                altText={product.title}
+              />
+            )}
+            {isEbookContent && (
+              <EbookContentPreview
+                bannerImage={media.banner || DEFAULT_IMAGE}
+                description={product.title}
+                altText={product.title}
+              />
+            )}
+            {isAudioContent && (
+              <AudioContentPreview
+                previewUrl={media.preview || DEFAULT_IMAGE}
+                bannerImage={media.banner || DEFAULT_IMAGE}
+              />
+            )}
+            {isLinkContent && (
+              <LinkContentPreview
+                bannerImage={media.banner || DEFAULT_IMAGE}
+                description={product.title}
+              />
+            )}
+            {isZipContent && (
+              <ZipContentPreview
+                title={product.title}
+                bannerImage={media.banner || DEFAULT_IMAGE}
+              />
+            )}
+            {isCourseContent && (
+              <CourseContentPreview
+                thumbnail={media.thumbnail || DEFAULT_IMAGE}
+                previewUrl={media.preview || DEFAULT_IMAGE}
+              />
+            )}
+          </div>
+        )}
         <div className="flex flex-col items-center px-10">
           <p className="font-medium text-4xl text-black">{price} FCFA</p>
           <Link to="/checkout" className="w-full group">
@@ -117,7 +127,7 @@ const ProductDetailsPreview: React.FC<ProductDetailsPreviewProps> = ({
               onClick={() => addProductToCart(product)}
               className="summarybutton bg-[#FFFFFF] text-[#7C7C7C] border border-[#7C7C7C80] my-[6px]"
             >
-              add To Cart
+              Add To Cart
               <FaArrowRight className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
           </div>

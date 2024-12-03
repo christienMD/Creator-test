@@ -39,7 +39,7 @@ const CardCheckout = () => {
   console.log('cart items: ', cartItems);
 
   return (
-    <div className="container p-2 mx-auto md:p-4">
+    <div className="container p-2 mx-auto md:p-4 min-h-screen">
       <CardCheckoutFlow stageTitle={'My Cart'} />
 
       <div className="flex flex-col lg:flex-row mt-4">

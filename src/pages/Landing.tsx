@@ -32,11 +32,11 @@ function LandingPage() {
         <div className="bg-creator-bg-100 w-full p-14">
           <CreatorsComponent creators={creatorLinks} />
         </div>
-        <div className="bg-white w-full p-14">
+        <div className="bg-white w-full">
           <BuyComponent />
         </div>
 
-        <div className="bg-creator-bg-100 w-full p-14">
+        <div className="bg-creator-bg-100 w-full p-6">
           <SellComponent />
         </div>
         <div className="bg-white">

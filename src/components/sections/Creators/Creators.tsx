@@ -18,8 +18,11 @@ function CreatorsComponent({ creators }: CreatorProps) {
           Creators with products that have the highest ratings.
         </h2>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro tenetur
-          reiciendis labore, voluptate recusandae quia!
+          Celebrated for their quality, innovation, and customer satisfaction!
+          These standout creators consistently deliver exceptional value,
+          earning glowing reviews and building lasting trust with their
+          audience. Explore their best-rated offerings and experience the
+          difference for yourself!
         </p>
       </div>
       <div className="grid grid-cols-2 sm:grid-flow-row lg:grid-cols-4 gap-6 ">

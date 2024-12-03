@@ -22,3 +22,17 @@ export interface ApiError {
     [key: string]: string[];
   };
 }
+
+
+export interface ResetTokenRequest {
+  email?: string;
+  phone_number?: string;
+}
+
+export interface ResetPasswordRequest {
+  token: string;
+  password: string;
+  password_confirmation: string;
+  email?: string;
+  phone_number?: string;
+}
