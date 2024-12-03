@@ -23,166 +23,76 @@ const Step3ProductPreview = ({
   //   const { token } = useAuth();
   const { API } = useApi();
 
-  // const handleSubmit = async () => {
-  //   const token = localStorage.getItem("auth_token");
-  //   if (!token) return;
+  const handleSubmit = async () => {
+    const token = localStorage.getItem("auth_token");
+    if (!token) return;
 
-  //   setIsSubmitting(true);
-  //   setError(null);
+    setIsSubmitting(true);
+    setError(null);
 
-  //   try {
-  //     const submitData = new FormData();
+    try {
+      const submitData = new FormData();
 
-  //     // Handle regular form fields (non-product_items)
-  //     Object.entries(formData).forEach(([key, value]) => {
-  //       if (key !== "product_items") {
-  //         if (value instanceof File) {
-  //           submitData.append(key, value);
-  //         } else if (value !== null && value !== undefined) {
-  //           submitData.append(key, value.toString());
-  //         }
-  //       }
-  //     });
+      // Handle regular form fields (non-product_items)
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key !== "product_items") {
+          if (value instanceof File) {
+            submitData.append(key, value);
+          } else if (value !== null && value !== undefined) {
+            submitData.append(key, value.toString());
+          }
+        }
+      });
 
-  //     // Handle product items array with proper array structure
-  //     formData.product_items.forEach((item, index) => {
-  //       // Handle media file as array
-  //       if (item.media instanceof File) {
-  //         submitData.append(`product_items[${index}][media][]`, item.media);
-  //       }
+      // Handle product items array with proper array structure
+      formData.product_items.forEach((item, index) => {
+        // Handle media file as array
+        if (item.media instanceof File) {
+          submitData.append(`product_items[${index}][media][]`, item.media);
+        }
 
-  //       // Handle all other item properties
-  //       Object.entries(item).forEach(([itemKey, itemValue]) => {
-  //         if (itemKey !== "media") {
-  //           if (itemKey === "is_downloadable") {
-  //             // Safe boolean conversion with type checking
-  //             submitData.append(
-  //               `product_items[${index}][${itemKey}]`,
-  //               typeof itemValue === "boolean" ? (itemValue ? "1" : "0") : "0"
-  //             );
-  //           } else {
-  //             submitData.append(
-  //               `product_items[${index}][${itemKey}]`,
-  //               itemValue?.toString() ?? ""
-  //             );
-  //           }
-  //         }
-  //       });
-  //     });
+        // Handle all other item properties
+        Object.entries(item).forEach(([itemKey, itemValue]) => {
+          if (itemKey !== "media") {
+            if (itemKey === "is_downloadable") {
+              // Safe boolean conversion with type checking
+              submitData.append(
+                `product_items[${index}][${itemKey}]`,
+                typeof itemValue === "boolean" ? (itemValue ? "1" : "0") : "0"
+              );
+            } else {
+              submitData.append(
+                `product_items[${index}][${itemKey}]`,
+                itemValue?.toString() ?? ""
+              );
+            }
+          }
+        });
+      });
 
-  //     // Optional: Debug logging
-  //     for (const pair of submitData.entries()) {
-  //       console.log(pair[0], pair[1]);
-  //     }
-
-  //     const response = await API.postProduct(submitData, token);
-
-  //     if (response[2]) {
-  //       setSuccess(true);
-  //       onSubmissionSuccess();
-  //     } else {
-  //       throw new Error(response[1]?.message || "Failed to create product");
-  //     }
-  //   } catch (error) {
-  //     setError(
-  //       error instanceof Error ? error.message : "Failed to create product"
-  //     );
-  //     console.error("Submission error:", error);
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
-
-
-
-const handleSubmit = async () => {
-  const token = localStorage.getItem("auth_token");
-  if (!token) return;
-
-  setIsSubmitting(true);
-  setError(null);
-
-  try {
-    const submitData = new FormData();
-
-    // Add main product fields
-    submitData.append("title", formData.title);
-    submitData.append("description", formData.description || "");
-    submitData.append("price", formData.price);
-    submitData.append("category_id", formData.category_id);
-
-    // Add required files
-    if (formData.banner instanceof File) {
-      submitData.append("banner", formData.banner);
-    }
-    if (formData.thumbnail instanceof File) {
-      submitData.append("thumbnail", formData.thumbnail);
-    }
-
-    // Only add preview video for video/course products
-    if (
-      (formData.category_id === "1" || formData.category_id === "2") &&
-      formData.preview_video instanceof File
-    ) {
-      submitData.append("preview_video", formData.preview_video);
-    }
-
-    // Add product items
-    formData.product_items.forEach((item, index) => {
-      // Handle media file
-      if (item.media instanceof File) {
-        submitData.append(`product_items[${index}][media][]`, item.media);
+      // Optional: Debug logging
+      for (const pair of submitData.entries()) {
+        console.log(pair[0], pair[1]);
       }
 
-      // Add other item fields
-      submitData.append(`product_items[${index}][title]`, item.title);
-      submitData.append(
-        `product_items[${index}][category_id]`,
-        item.category_id
-      );
+      const response = await API.postProduct(submitData, token);
 
-      if (item.description) {
-        submitData.append(
-          `product_items[${index}][description]`,
-          item.description
-        );
+      if (response[2]) {
+        setSuccess(true);
+        onSubmissionSuccess();
+      } else {
+        throw new Error(response[1]?.message || "Failed to create product");
       }
-
-      // Convert boolean to 1/0
-      submitData.append(
-        `product_items[${index}][is_downloadable]`,
-        item.is_downloadable ? "1" : "0"
+    } catch (error) {
+      setError(
+        error instanceof Error ? error.message : "Failed to create product"
       );
-
-      submitData.append(
-        `product_items[${index}][order]`,
-        item.order.toString()
-      );
-    });
-
-    // Debug log the FormData entries
-    console.log("Submitting form data:");
-    for (const pair of submitData.entries()) {
-      console.log(`${pair[0]}: ${pair[1]}`);
+      console.error("Submission error:", error);
+    } finally {
+      setIsSubmitting(false);
     }
+  };
 
-    const response = await API.postProduct(submitData, token);
-
-    if (response[2]) {
-      setSuccess(true);
-      onSubmissionSuccess();
-    } else {
-      throw new Error(response[1]?.message || "Failed to create product");
-    }
-  } catch (error) {
-    setError(
-      error instanceof Error ? error.message : "Failed to create product"
-    );
-    console.error("Submission error:", error);
-  } finally {
-    setIsSubmitting(false);
-  }
-};
 
   const formatPrice = (price: string) => {
     return new Intl.NumberFormat("en-US", {

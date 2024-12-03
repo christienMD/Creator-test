@@ -148,7 +148,7 @@ const Step2ProductItems = ({ onComplete, onBack, initialData }: Props) => {
         {
           title: "",
           description: "",
-          is_downloadable: true,
+          is_downloadable:true,
           order: 0,
           category_id: "",
           media: null,
@@ -540,7 +540,7 @@ const Step2ProductItems = ({ onComplete, onBack, initialData }: Props) => {
     append({
       title: "",
       description: "",
-      is_downloadable: false,
+      is_downloadable: true,
       order: newItemIndex,
       category_id: selectedMainCategory === "1" ? "" : selectedMainCategory,
       media: null,
