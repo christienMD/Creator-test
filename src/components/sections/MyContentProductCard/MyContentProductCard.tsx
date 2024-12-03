@@ -17,7 +17,6 @@ import { Download } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { PurchaseAudioProduct } from '../PurchaseAudioProduct/PurchaseAudioProduct';
-import React from 'react';
 // import useCartStore from '@/stores/useCartStore';
 
 interface ProductCardProps {
