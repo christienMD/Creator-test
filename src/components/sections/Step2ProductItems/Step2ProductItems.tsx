@@ -148,7 +148,7 @@ const Step2ProductItems = ({ onComplete, onBack, initialData }: Props) => {
         {
           title: "",
           description: "",
-          is_downloadable: false,
+          is_downloadable: true,
           order: 0,
           category_id: "",
           media: null,
