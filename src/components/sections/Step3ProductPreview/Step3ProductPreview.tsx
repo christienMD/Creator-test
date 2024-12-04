@@ -80,6 +80,7 @@ const Step3ProductPreview = ({
       if (response[2]) {
         setSuccess(true);
         onSubmissionSuccess();
+        localStorage.removeItem("product_form_draft");
       } else {
         throw new Error(response[1]?.message || "Failed to create product");
       }

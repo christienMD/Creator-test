@@ -1,4 +1,5 @@
 import { Product } from "@/types/entities";
+import { toast } from "react-toastify";
 import { create } from "zustand";
 
 interface CartItem extends Product {
@@ -17,7 +18,7 @@ interface CartActions {
   clearCart: () => void;
   loadCart: () => void;
   getTotalItems: () => number;
-  getProductIDs: (products: CartItem[]) => number[]; 
+  getProductIDs: (products: CartItem[]) => number[];
 }
 
 const useCartStore = create<CartState & CartActions>((set, get) => ({
@@ -33,9 +34,8 @@ const useCartStore = create<CartState & CartActions>((set, get) => ({
     if (!existingItem) {
       updatedCartItems = [...get().cartItems, { ...item, quantity: 1 }];
     } else {
-      // Show alert instead of logging to the console
-      alert("Item already exist in cart");
-      return; // Prevent adding the item again
+      toast.warning("Item already exist in cart");
+      return;
     }
 
     set({ cartItems: updatedCartItems });
@@ -69,15 +69,14 @@ const useCartStore = create<CartState & CartActions>((set, get) => ({
   //   set({ totalPrice: total });
   // },
 
-   getTotalPrice:  () => {
-  const total = get().cartItems.reduce(
-    (total, product) => total + product.price * product.quantity,
-    0
-  );
-  set({ totalPrice: total });
-  return total; // Add this line to return the total value
-},
-
+  getTotalPrice: () => {
+    const total = get().cartItems.reduce(
+      (total, product) => total + product.price * product.quantity,
+      0
+    );
+    set({ totalPrice: total });
+    return total; // Add this line to return the total value
+  },
 
   getProductIDs: (products: CartItem[]) => {
     return products.map((product) => product.id);

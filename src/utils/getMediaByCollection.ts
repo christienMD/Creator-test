@@ -10,7 +10,7 @@ export const getMediaByCollection = (media: Media[] | undefined) => {
   return {
     banner: media.find(m => m.collection_name === 'banners')?.original_url,
     thumbnail: media.find(m => m.collection_name === 'thumbnails')?.original_url,
-    preview: media.find(m => m.collection_name === 'previews')?.original_url,
+    preview: media.find(m => m.collection_name === 'preview_videos')?.original_url,
   };
 };
 

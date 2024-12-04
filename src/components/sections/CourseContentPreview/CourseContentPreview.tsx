@@ -21,8 +21,8 @@ export const CourseContentPreview = ({ previewUrl }: Props) => {
   };
 
   return (
-    <div className="relative h-full w-full">
-      <div className="player-wrapper h-full">
+    <div className="relative h-full w-full bg-creator-bg-400">
+      <div className="player-wrapper h-full bg-creator-bg-400">
         <ReactPlayer
           ref={playerRef}
           url={previewUrl}

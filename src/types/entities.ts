@@ -86,7 +86,7 @@ export interface Media {
   model_type: string;
   model_id: number;
   uuid: string;
-  collection_name: "previews" | "thumbnails" | "banners";
+  collection_name: "preview_videos" | "thumbnails" | "banners";
   name: string;
   file_name: string;
   mime_type: string;
