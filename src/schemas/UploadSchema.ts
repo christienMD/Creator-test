@@ -23,7 +23,7 @@ export const ProductItemSchema = z.object({
 });
 
 export const Step1FormSchema = z.object({
-  title: z.string().min(50, "Title must be at least 50 characters").max(255),
+  title: z.string().min(70, "Title must be at least 70 characters").max(255),
   description: z.string().max(225).optional(),
   price: z
     .string()

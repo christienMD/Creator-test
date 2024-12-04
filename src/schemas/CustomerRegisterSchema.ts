@@ -13,7 +13,20 @@ export const CustomerRegisterSchema = z
     name: z
       .string()
       .min(1, "Name is required")
-      .max(50, "Name must be less than 50 characters"),
+      .max(50, "Name must be less than 50 characters")
+      .refine(
+        (name) => {
+          // Check if name starts with letters only
+          if (!/^[a-zA-Z]{3}/.test(name)) {
+            return false;
+          }
+          
+          // Check if name has too many numbers (more than 50% of the string)
+          const numberCount = (name.match(/\d/g) || []).length;
+          return numberCount <= name.length / 2;
+        },
+        "Name must start with at least 3 letters and cannot have too many numbers"
+      ),
 
     email: z
       .string()

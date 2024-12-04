@@ -27,13 +27,11 @@ const TextEditor: React.FC<TextEditorProps> = ({
     }
   };
 
-  const REACT_APP_TINYMCE_API_KEY =
-    "ekrxksd7z8fxx54qt9swqbfge0c2a120qf4ojfzg5gcxi2pr";
 
   return (
     <div className="">
       <Editor
-        apiKey={REACT_APP_TINYMCE_API_KEY}
+        apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
         onInit={(_evt, editor) => {
           editorRef.current = editor;
         }}

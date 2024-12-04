@@ -15,14 +15,16 @@ import { AuthUser } from "@/types/entities";
 import { useApi } from "@/utils/fetcher";
 import { toast } from "react-toastify";
 import { Loader } from "lucide-react";
+import useCartStore from "@/stores/useCartStore";
 
 export function UserProfile() {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState<AuthUser | null>(null);
   // console.log("user: ", user);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const clearCart = useCartStore((state) => state.clearCart);
   const { API } = useApi();
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userDataString = localStorage.getItem("userData");
@@ -31,36 +33,35 @@ export function UserProfile() {
     }
   }, []);
 
- 
- const handleLogout = async () => {
-   try {
-     setIsLoggingOut(true); // Set logging out state
-     const token = localStorage.getItem("auth_token");
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true);
+      const token = localStorage.getItem("auth_token");
 
-     if (token) {
-       await API.logout(token);
-     }
+      if (token) {
+        await API.logout(token);
+      }
 
-     localStorage.removeItem("auth_token");
-     localStorage.removeItem("userData");
+      localStorage.removeItem("auth_token");
+      localStorage.removeItem("userData");
+      clearCart();
 
-     navigate("/login", {
-       replace: true,
-       state: {
-         loggedOut: true,
-       },
-     });
-   } catch (error) {
-     console.error("Logout failed:", error);
-     localStorage.removeItem("auth_token");
-     localStorage.removeItem("userData");
-     toast.error("Error during logout");
-     navigate("/login");
-   } finally {
-     setIsLoggingOut(false);
-   }
- };
-
+      navigate("/login", {
+        replace: true,
+        state: {
+          loggedOut: true,
+        },
+      });
+    } catch (error) {
+      console.error("Logout failed:", error);
+      localStorage.removeItem("auth_token");
+      localStorage.removeItem("userData");
+      toast.error("Error during logout");
+      navigate("/login");
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
 
   const getInitials = (name: string) => {
     return name
@@ -71,21 +72,21 @@ export function UserProfile() {
   };
 
   const menuItems = [
-    {
-      label: "Profile",
-      href: `/profile/user-dashboard`,
-      disabled: false,
-    },
-    { label: "Dashboard", href: "#", disabled: true },
-    { label: "Post a Request", href: "#", disabled: false },
-    { label: "Refer a Friend", href: "#", disabled: false },
-    {
-      label: "Settings",
-      href: `/profile/settings`,
-      disabled: false,
-    },
-    { label: "Billing and payments", href: "#", disabled: true },
-    { label: "Help & support", href: "#", disabled: false },
+    // {
+    //   label: "Profile",
+    //   href: `/profile/user-dashboard`,
+    //   disabled: false,
+    // },
+    { label: "Dashboard", href: "/creator/dashboard", disabled: false },
+    // { label: "Post a Request", href: "#", disabled: false },
+    // { label: "Refer a Friend", href: "#", disabled: false },
+    // {
+    //   label: "Settings",
+    //   href: `/profile/settings`,
+    //   disabled: false,
+    // },
+    // { label: "Billing and payments", href: "#", disabled: false },
+    // { label: "Help & support", href: "#", disabled: false },
   ];
 
   return (
