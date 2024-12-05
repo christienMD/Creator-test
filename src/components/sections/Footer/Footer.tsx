@@ -20,7 +20,7 @@ function Footer({ footerData }: FooterProps) {
   return (
     <footer className="section-container ">
       <div className="px-4 justify-between ">
-        <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4  gap-8">
           <div className="space-y-4">
             <Link to="/">
               <h1 className="text-4xl font-bold">CREATORS</h1>

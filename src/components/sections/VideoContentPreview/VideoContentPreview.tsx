@@ -44,7 +44,7 @@ export const VideoContentPreview = ({ previewUrl }: Props) => {
       <div className="absolute w-full bottom-2 left-2 flex items-center justify-between ps-6 py-2 pe-8">
         <button
           onClick={handlePlayPause}
-          className="bg-black bg-opacity-90 rounded-full p-1.5"
+          className="bg-creator-bg-400 bg-opacity-90 rounded-full p-1.5"
         >
           {isPlaying ? (
             <PauseIcon className="h-4 w-4 text-white" />
@@ -54,7 +54,7 @@ export const VideoContentPreview = ({ previewUrl }: Props) => {
         </button>
         <button
           onClick={handleMute}
-          className="bg-black bg-opacity-90 rounded-full p-1.5"
+          className="bg-creator-bg-400 bg-opacity-90 rounded-full p-1.5"
         >
           {isMuted ? (
             <VolumeX className="h-4 w-4 text-white" />

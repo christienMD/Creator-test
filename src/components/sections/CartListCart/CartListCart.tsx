@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import CartItemCard from "../../cards/CartItemCard/CartItemCard";
-import { LiaBroomSolid } from "react-icons/lia";
-import CartEmptyCard from "@/components/cards/CartEmptyCard/CartEmptyCard";
-import useCartStore from "@/stores/useCartStore";
-import { Product } from "@/types/entities";
+import React, { useState } from 'react';
+import CartItemCard from '../../cards/CartItemCard/CartItemCard';
+import { LiaBroomSolid } from 'react-icons/lia';
+import CartEmptyCard from '@/components/cards/CartEmptyCard/CartEmptyCard';
+import useCartStore from '@/stores/useCartStore';
+import { Product } from '@/types/entities';
 import {
   AlertDialog,
   AlertDialogContent,
@@ -13,7 +13,7 @@ import {
   AlertDialogFooter,
   AlertDialogCancel,
   AlertDialogAction,
-} from "@/components/ui/alert-dialog"; // Update this path to the correct location of AlertDialog components
+} from '@/components/ui/alert-dialog'; // Update this path to the correct location of AlertDialog components
 
 interface CartSectionProps {
   cartItems: Product[];
@@ -47,11 +47,11 @@ const CartListCart: React.FC<CartSectionProps> = ({
                 image={
                   cardItem.relationships?.media?.length > 0
                     ? cardItem.relationships.media[0]?.original_url
-                    : "/default-image.png"
+                    : '/default-image.png'
                 }
                 title={cardItem.title}
                 price={cardItem.price}
-                author={"christien"}
+                author={cardItem.relationships.creator.name}
                 onDelete={() => setSelectedItemId(cardItem.id)}
               />
             </div>
@@ -71,8 +71,8 @@ const CartListCart: React.FC<CartSectionProps> = ({
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
               {isClearCart
-                ? "This action cannot be undone. It will permanently clear all items from your cart."
-                : "This action cannot be undone. It will permanently delete this item from your cart."}
+                ? 'This action cannot be undone. It will permanently clear all items from your cart.'
+                : 'This action cannot be undone. It will permanently delete this item from your cart.'}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -99,7 +99,7 @@ const CartListCart: React.FC<CartSectionProps> = ({
                 setIsClearCart(false);
               }}
             >
-              {isClearCart ? "Clear All" : "Delete"}
+              {isClearCart ? 'Clear All' : 'Delete'}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

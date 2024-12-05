@@ -18,6 +18,8 @@ const SuccessPage: React.FC<PurchaseProductProps> = ({ cartItems }) => {
   }, [cartItems, getTotalPrice]);
 
   const totalPrice = useCartStore((state) => state.totalPrice);
+  //make total price to display to 2dp
+  const finalPrice = totalPrice.toFixed(3);
 
   return (
     <section className="flex items-center justify-center min-h-screen ">
@@ -49,15 +51,7 @@ const SuccessPage: React.FC<PurchaseProductProps> = ({ cartItems }) => {
         </h3>
         <div className="flex justify-between items-center py-3 border-t mt-4">
           <p className="font-medium text-lg text-gray-700">Total:</p>
-          <p className="font-medium text-xl text-black">{totalPrice} FCFA</p>
-        </div>
-
-        <div className="mt-8">
-          <Link to="/catalog">
-            <Button className="w-full bg-creator-bg-400 hover:bg-creator-bg-400 hover:opacity-75 text-center flex items-center justify-center gap-2">
-              Continue Shopping
-            </Button>
-          </Link>
+          <p className="font-medium text-xl text-black">{finalPrice} FCFA</p>
         </div>
 
         <div className="mt-4">

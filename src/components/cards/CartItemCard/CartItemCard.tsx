@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 //import { IoIosStar } from "react-icons/io";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt } from 'react-icons/fa';
 // import { CiHeart } from "react-icons/ci";
 
 // icon for the type of product
-import { GrDocumentPdf } from "react-icons/gr";
-import { CiImageOn, CiVideoOn, CiLink } from "react-icons/ci";
-import { AiOutlineAudio } from "react-icons/ai";
+import { GrDocumentPdf } from 'react-icons/gr';
+import { CiImageOn, CiVideoOn, CiLink } from 'react-icons/ci';
+import { AiOutlineAudio } from 'react-icons/ai';
 
 interface CartItemCardProps {
   image: string;
@@ -18,7 +18,7 @@ interface CartItemCardProps {
 }
 
 const getIconComponent = (imageUrlOrLink: string) => {
-  if (imageUrlOrLink.endsWith(".pdf")) {
+  if (imageUrlOrLink.endsWith('.pdf')) {
     return (
       <GrDocumentPdf
         className="absolute top-[33px] left-[38px]"
@@ -27,9 +27,9 @@ const getIconComponent = (imageUrlOrLink: string) => {
       />
     );
   } else if (
-    imageUrlOrLink.endsWith(".jpg") ||
-    imageUrlOrLink.endsWith(".jpeg") ||
-    imageUrlOrLink.endsWith(".png")
+    imageUrlOrLink.endsWith('.jpg') ||
+    imageUrlOrLink.endsWith('.jpeg') ||
+    imageUrlOrLink.endsWith('.png')
   ) {
     return (
       <CiImageOn
@@ -39,8 +39,8 @@ const getIconComponent = (imageUrlOrLink: string) => {
       />
     );
   } else if (
-    imageUrlOrLink.endsWith(".mp4") ||
-    imageUrlOrLink.endsWith(".mov")
+    imageUrlOrLink.endsWith('.mp4') ||
+    imageUrlOrLink.endsWith('.mov')
   ) {
     return (
       <CiVideoOn
@@ -50,8 +50,8 @@ const getIconComponent = (imageUrlOrLink: string) => {
       />
     );
   } else if (
-    imageUrlOrLink.endsWith(".mp3") ||
-    imageUrlOrLink.endsWith(".wav")
+    imageUrlOrLink.endsWith('.mp3') ||
+    imageUrlOrLink.endsWith('.wav')
   ) {
     return (
       <AiOutlineAudio
@@ -60,7 +60,7 @@ const getIconComponent = (imageUrlOrLink: string) => {
         color="#004C4C"
       />
     );
-  } else if (imageUrlOrLink.startsWith("http")) {
+  } else if (imageUrlOrLink.startsWith('http')) {
     return (
       <CiLink
         className="absolute top-[33px] left-[38px]"
@@ -102,9 +102,7 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
           </p>
         </div>
         <div className="flex justify-between items-center">
-          <div className="flex justify-center items-center border border-[#393939] rounded-full ">
-            {/* <CiHeart size={20} /> */}
-          </div>
+          <div className="flex justify-center items-center  "></div>
           <button
             className="flex items-center py-[5px] gap-[10px] font-normal text-xl"
             onClick={onDelete}

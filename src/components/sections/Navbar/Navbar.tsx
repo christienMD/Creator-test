@@ -133,7 +133,7 @@ const Navbar = () => {
               {/* CREATORS Logo Centered */}
               <div className="flex-1  font-bold">
                 <h1 className="text-2xl font-bold text-creator-bg-400">
-                  <Link to="/">CREATORS</Link>
+                  <Link to="/home">CREATORS</Link>
                 </h1>
               </div>
 
@@ -155,7 +155,7 @@ const Navbar = () => {
               {/* Logo */}
               <div className="flex-shrink-0 font-bold">
                 <h1 className="text-2xl md:text-4xl font-bold text-creator-bg-400">
-                  <Link to="/">CREATORS</Link>
+                  <Link to="/home">CREATORS</Link>
                 </h1>
               </div>
 

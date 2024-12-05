@@ -93,7 +93,6 @@ const CATEGORY_CONSTRAINTS: CategoryConstraints = {
   },
 };
 
-
 const Step2ProductItems = ({ onComplete, onBack, initialData }: Props) => {
   const { categories } = useCategories();
   const [mainFilePreview, setMainFilePreview] = useState<
@@ -116,7 +115,7 @@ const Step2ProductItems = ({ onComplete, onBack, initialData }: Props) => {
         {
           title: "",
           description: "",
-          is_downloadable:true,
+          is_downloadable: true,
           order: 0,
           category_id: "",
           media: null,
@@ -209,170 +208,170 @@ const Step2ProductItems = ({ onComplete, onBack, initialData }: Props) => {
     }));
     form.setValue(`product_items.${itemIndex}.media`, file);
   };
-  
-//   was working at 10:38
-//   const handleFileUpload = (
-//     e: React.ChangeEvent<HTMLInputElement>,
-//     itemIndex: number
-//   ) => {
-//     const file = e.target.files?.[0];
-//     setFormError(null);
 
-//     if (!file) return;
+  //   was working at 10:38
+  //   const handleFileUpload = (
+  //     e: React.ChangeEvent<HTMLInputElement>,
+  //     itemIndex: number
+  //   ) => {
+  //     const file = e.target.files?.[0];
+  //     setFormError(null);
 
-//     if (file.size > MAX_FILE_SIZE) {
-//       setFormError(
-//         `File size must be less than ${MAX_FILE_SIZE / (1024 * 1024)}MB`
-//       );
-//       return;
-//     }
+  //     if (!file) return;
 
-//     // Get the main category constraints
-//     const mainCategoryConstraints = CATEGORY_CONSTRAINTS[selectedMainCategory];
-//     if (!mainCategoryConstraints) {
-//       setFormError("Invalid category configuration");
-//       return;
-//     }
+  //     if (file.size > MAX_FILE_SIZE) {
+  //       setFormError(
+  //         `File size must be less than ${MAX_FILE_SIZE / (1024 * 1024)}MB`
+  //       );
+  //       return;
+  //     }
 
-//     // If it's not a course, enforce the main category file type
-//     if (selectedMainCategory !== "1") {
-//       const { acceptTypes } = mainCategoryConstraints;
+  //     // Get the main category constraints
+  //     const mainCategoryConstraints = CATEGORY_CONSTRAINTS[selectedMainCategory];
+  //     if (!mainCategoryConstraints) {
+  //       setFormError("Invalid category configuration");
+  //       return;
+  //     }
 
-//       if (!file.type.startsWith(acceptTypes.split(",")[0])) {
-//         setFormError(
-//           `Only ${acceptTypes
-//             .split(",")
-//             .map((type) => type.toUpperCase())
-//             .join(", ")} files are allowed for this category`
-//         );
-//         return;
-//       }
-//     } else {
-//       // For courses, check the item's category
-//       const itemCategory = form.getValues(
-//         `product_items.${itemIndex}.category_id`
-//       );
-//       if (!itemCategory) {
-//         setFormError("Please select an item category first");
-//         return;
-//       }
+  //     // If it's not a course, enforce the main category file type
+  //     if (selectedMainCategory !== "1") {
+  //       const { acceptTypes } = mainCategoryConstraints;
 
-//       const itemConstraints = CATEGORY_CONSTRAINTS[itemCategory];
-//       if (!itemConstraints) {
-//         setFormError("Invalid item category configuration");
-//         return;
-//       }
+  //       if (!file.type.startsWith(acceptTypes.split(",")[0])) {
+  //         setFormError(
+  //           `Only ${acceptTypes
+  //             .split(",")
+  //             .map((type) => type.toUpperCase())
+  //             .join(", ")} files are allowed for this category`
+  //         );
+  //         return;
+  //       }
+  //     } else {
+  //       // For courses, check the item's category
+  //       const itemCategory = form.getValues(
+  //         `product_items.${itemIndex}.category_id`
+  //       );
+  //       if (!itemCategory) {
+  //         setFormError("Please select an item category first");
+  //         return;
+  //       }
 
-//       const { acceptTypes } = itemConstraints;
+  //       const itemConstraints = CATEGORY_CONSTRAINTS[itemCategory];
+  //       if (!itemConstraints) {
+  //         setFormError("Invalid item category configuration");
+  //         return;
+  //       }
 
-//       if (!file.type.startsWith(acceptTypes.split(",")[0])) {
-//         setFormError(
-//           `Only ${acceptTypes
-//             .split(",")
-//             .map((type) => type.toUpperCase())
-//             .join(", ")} files are allowed for this item category`
-//         );
-//         return;
-//       }
-//     }
+  //       const { acceptTypes } = itemConstraints;
 
-//     // If validation passes, create preview and set value
-//     const filePreview: FilePreview = {
-//       url: URL.createObjectURL(file),
-//       file: file,
-//     };
+  //       if (!file.type.startsWith(acceptTypes.split(",")[0])) {
+  //         setFormError(
+  //           `Only ${acceptTypes
+  //             .split(",")
+  //             .map((type) => type.toUpperCase())
+  //             .join(", ")} files are allowed for this item category`
+  //         );
+  //         return;
+  //       }
+  //     }
 
-//     setMainFilePreview((prev) => ({
-//       ...prev,
-//       [itemIndex]: filePreview,
-//     }));
-//     form.setValue(`product_items.${itemIndex}.media`, file);
-//   };
+  //     // If validation passes, create preview and set value
+  //     const filePreview: FilePreview = {
+  //       url: URL.createObjectURL(file),
+  //       file: file,
+  //     };
 
-//   const handleFileUpload = (
-//     e: React.ChangeEvent<HTMLInputElement>,
-//     itemIndex: number
-//   ) => {
-//     const file = e.target.files?.[0];
-//     setFormError(null);
+  //     setMainFilePreview((prev) => ({
+  //       ...prev,
+  //       [itemIndex]: filePreview,
+  //     }));
+  //     form.setValue(`product_items.${itemIndex}.media`, file);
+  //   };
 
-//     if (!file) return;
+  //   const handleFileUpload = (
+  //     e: React.ChangeEvent<HTMLInputElement>,
+  //     itemIndex: number
+  //   ) => {
+  //     const file = e.target.files?.[0];
+  //     setFormError(null);
 
-//     if (file.size > MAX_FILE_SIZE) {
-//       setFormError(
-//         `File size must be less than ${MAX_FILE_SIZE / (1024 * 1024)}MB`
-//       );
-//       return;
-//     }
+  //     if (!file) return;
 
-//     // Get the main category constraints
-//     const mainCategoryConstraints = CATEGORY_CONSTRAINTS[selectedMainCategory];
-//     if (!mainCategoryConstraints) {
-//       setFormError("Invalid category configuration");
-//       return;
-//     }
+  //     if (file.size > MAX_FILE_SIZE) {
+  //       setFormError(
+  //         `File size must be less than ${MAX_FILE_SIZE / (1024 * 1024)}MB`
+  //       );
+  //       return;
+  //     }
 
-//     // If it's not a course, enforce the main category file type
-//     if (selectedMainCategory !== "1") {
-//       const { allowedTypes } = mainCategoryConstraints;
-//       const fileType = file.type.split("/")[0];
+  //     // Get the main category constraints
+  //     const mainCategoryConstraints = CATEGORY_CONSTRAINTS[selectedMainCategory];
+  //     if (!mainCategoryConstraints) {
+  //       setFormError("Invalid category configuration");
+  //       return;
+  //     }
 
-//       if (!allowedTypes.includes(fileType)) {
-//         setFormError(
-//           `Only ${allowedTypes.join(", ")} files are allowed for this category`
-//         );
-//         return;
-//       }
+  //     // If it's not a course, enforce the main category file type
+  //     if (selectedMainCategory !== "1") {
+  //       const { allowedTypes } = mainCategoryConstraints;
+  //       const fileType = file.type.split("/")[0];
 
-//       // Additional specific type validation
-//       if (!validateFile(file, allowedTypes[0])) {
-//         return;
-//       }
-//     } else {
-//       // For courses, check the item's category
-//       const itemCategory = form.getValues(
-//         `product_items.${itemIndex}.category_id`
-//       );
-//       if (!itemCategory) {
-//         setFormError("Please select an item category first");
-//         return;
-//       }
+  //       if (!allowedTypes.includes(fileType)) {
+  //         setFormError(
+  //           `Only ${allowedTypes.join(", ")} files are allowed for this category`
+  //         );
+  //         return;
+  //       }
 
-//       const itemConstraints = CATEGORY_CONSTRAINTS[itemCategory];
-//       if (!itemConstraints) {
-//         setFormError("Invalid item category configuration");
-//         return;
-//       }
+  //       // Additional specific type validation
+  //       if (!validateFile(file, allowedTypes[0])) {
+  //         return;
+  //       }
+  //     } else {
+  //       // For courses, check the item's category
+  //       const itemCategory = form.getValues(
+  //         `product_items.${itemIndex}.category_id`
+  //       );
+  //       if (!itemCategory) {
+  //         setFormError("Please select an item category first");
+  //         return;
+  //       }
 
-//       const { allowedTypes } = itemConstraints;
-//       const fileType = file.type.split("/")[0];
+  //       const itemConstraints = CATEGORY_CONSTRAINTS[itemCategory];
+  //       if (!itemConstraints) {
+  //         setFormError("Invalid item category configuration");
+  //         return;
+  //       }
 
-//       if (!allowedTypes.includes(fileType)) {
-//         setFormError(
-//           `Only ${allowedTypes.join(
-//             ", "
-//           )} files are allowed for this item category`
-//         );
-//         return;
-//       }
+  //       const { allowedTypes } = itemConstraints;
+  //       const fileType = file.type.split("/")[0];
 
-//       if (!validateFile(file, allowedTypes[0])) {
-//         return;
-//       }
-//     }
+  //       if (!allowedTypes.includes(fileType)) {
+  //         setFormError(
+  //           `Only ${allowedTypes.join(
+  //             ", "
+  //           )} files are allowed for this item category`
+  //         );
+  //         return;
+  //       }
 
-//     // If validation passes, create preview and set value
-//     const filePreview: FilePreview = {
-//       url: URL.createObjectURL(file),
-//       file: file,
-//     };
+  //       if (!validateFile(file, allowedTypes[0])) {
+  //         return;
+  //       }
+  //     }
 
-//     setMainFilePreview((prev) => ({
-//       ...prev,
-//       [itemIndex]: filePreview,
-//     }));
-//     form.setValue(`product_items.${itemIndex}.media`, file);
-//   };
+  //     // If validation passes, create preview and set value
+  //     const filePreview: FilePreview = {
+  //       url: URL.createObjectURL(file),
+  //       file: file,
+  //     };
+
+  //     setMainFilePreview((prev) => ({
+  //       ...prev,
+  //       [itemIndex]: filePreview,
+  //     }));
+  //     form.setValue(`product_items.${itemIndex}.media`, file);
+  //   };
 
   useEffect(() => {
     if (initialData) {
@@ -666,7 +665,7 @@ const Step2ProductItems = ({ onComplete, onBack, initialData }: Props) => {
                                   onValueChange={(value) =>
                                     field.onChange(value === "true")
                                   }
-                                  defaultValue={"true" }
+                                  defaultValue={"true"}
                                 >
                                   <SelectTrigger>
                                     <SelectValue placeholder="Select option" />

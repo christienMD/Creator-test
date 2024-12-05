@@ -16,6 +16,9 @@ const CardSummaryOrder: React.FC<CardCheckoutProps> = ({
   onBuyNow,
 }) => {
   const totalPrice = useCartStore((state) => state.totalPrice);
+  //make total price to display to 2dp
+  const finalPrice = totalPrice.toFixed(3);
+
   // console.log('cart items', cartItems);
   console.log('total price ======>', totalPrice);
   return (
@@ -26,7 +29,7 @@ const CardSummaryOrder: React.FC<CardCheckoutProps> = ({
           Total
         </p>
         <p className="text-nowrap p-[10px] gap-[10px] font-medium text-2xl text-black">
-          {totalPrice} FCFA
+          {finalPrice} FCFA
         </p>
       </div>
       <Link to="" className="group">

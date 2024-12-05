@@ -64,12 +64,12 @@ const ProductUpload = () => {
   //     localStorage.setItem("product_form_draft", JSON.stringify(storageData));
   //   };
 
-const handleStep1Complete = (data: UploadFormValues) => {
-  console.log("Step 1 Complete Data:", data);
-  setFormData(data);
-  setCurrentStep(2);
-  localStorage.setItem("product_form_draft", JSON.stringify(data));
-};
+  const handleStep1Complete = (data: UploadFormValues) => {
+    console.log("Step 1 Complete Data:", data);
+    setFormData(data);
+    setCurrentStep(2);
+    localStorage.setItem("product_form_draft", JSON.stringify(data));
+  };
 
   const handleStep2Complete = (data: UploadFormValues) => {
     setFormData(data);
