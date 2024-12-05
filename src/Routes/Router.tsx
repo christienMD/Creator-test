@@ -53,6 +53,10 @@ const router = createBrowserRouter([
     path: "/password-reset",
     element: <ResetPassword />,
   },
+  {
+    path: "/cart",
+    element: <CartPage />,
+  },
 
   // All protected routes under a single PrivateRoutes wrapper
   {
@@ -62,10 +66,6 @@ const router = createBrowserRouter([
       {
         path: "/my-content",
         element: <MyContentPage />,
-      },
-      {
-        path: "/cart",
-        element: <CartPage />,
       },
       {
         path: "/checkout",
