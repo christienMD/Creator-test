@@ -14,7 +14,7 @@ interface InitialFormData {
   title: string;
   price: string;
   category_id: string;
-  description?: string;
+  description: string;
   banner?: FileOrNull;
   thumbnail?: FileOrNull;
   preview_video?: FileOrNull;
@@ -24,7 +24,9 @@ interface InitialFormData {
 
 const ProductUpload = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState<InitialFormData | null>(null);
+  const [formData, setFormData] = useState<InitialFormData>(
+    {} as InitialFormData
+  );
   const [authError, setAuthError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();
