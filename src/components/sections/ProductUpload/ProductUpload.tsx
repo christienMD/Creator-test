@@ -24,9 +24,7 @@ interface InitialFormData {
 
 const ProductUpload = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState<InitialFormData>(
-    {} as InitialFormData
-  );
+  const [formData, setFormData] = useState<InitialFormData | null>(null);
   const [authError, setAuthError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();

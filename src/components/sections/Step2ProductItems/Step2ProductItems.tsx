@@ -50,7 +50,7 @@ import { MAX_FILE_SIZE } from "@/schemas/UploadSchema";
 interface Props {
   onComplete: (data: UploadFormValues) => void;
   onBack: () => void;
-  initialData: UploadFormValues;
+  initialData: UploadFormValues | null;
 }
 
 interface CategoryConstraints {
