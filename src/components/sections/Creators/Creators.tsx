@@ -35,7 +35,7 @@ function CreatorsComponent({ creators }: CreatorProps) {
             />
             <h3 className="text-xl font-semibold mb-2">{creator.name}</h3>
             <Link
-              to="/details"
+              to="/catalog"
               className="text-gray-600  transition-colors duration-300"
             >
               See my products

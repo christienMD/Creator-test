@@ -1,29 +1,6 @@
 import { Link } from 'react-router-dom';
 
 const AboutPlatform = () => {
-  //   {
-  //     name: 'Fongoh Tayong',
-  //     role: 'Founder & CEO',
-  //     bio: 'Passionate about empowering creators and building innovative platforms.',
-  //     image:
-  //       'https://plus.unsplash.com/premium_photo-1663040543387-cb7c78c4f012?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c29mdHdhcmVkZXZlbG9wbWVudHxlbnwwfHwwfHx8MA%3D%3D',
-  //   },
-  //   {
-  //     name: 'Fongoh Martin',
-  //     role: 'Chief Technology Officer',
-  //     bio: 'Tech visionary with a track record of developing cutting-edge creator tools.',
-  //     image:
-  //       'https://ca.slack-edge.com/T05R6LXN7J8-U07G1TX3865-0c7b6ca91dcf-512',
-  //   },
-  //   {
-  //     name: 'Kindness Cheche',
-  //     role: 'Head of Community',
-  //     bio: 'Dedicated to supporting and connecting creators worldwide.',
-  //     image:
-  //       'https://ca.slack-edge.com/T05R6LXN7J8-U07FRNSJ0PN-32469f3c0df8-512',
-  //   },
-  // ];
-
   return (
     <div className="bg-white min-h-screen">
       <div className="container mx-auto px-4 py-16">

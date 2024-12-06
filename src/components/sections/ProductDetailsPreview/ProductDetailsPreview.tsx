@@ -36,7 +36,7 @@ const ProductDetailsPreview: React.FC<ProductDetailsPreviewProps> = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      const topOffset = 64; // Adjust this based on your navbar height
+      const topOffset = 64;
       setIsFixed(window.scrollY > topOffset);
     };
 
@@ -52,7 +52,7 @@ const ProductDetailsPreview: React.FC<ProductDetailsPreviewProps> = ({
   const isZipContent = category.name === 'zip';
   const isCourseContent = category.name === 'course';
   const media = getMediaByCollection(product.relationships.media);
-  console.log('media+++++++++++++ media: ', media);
+  // console.log('media+++++++++++++ media: ', media);
 
   // to add to cart
   const addProductToCart = useCartStore((state) => state.addProductToCart);
@@ -74,7 +74,7 @@ const ProductDetailsPreview: React.FC<ProductDetailsPreviewProps> = ({
             )}
             {isImageContent && (
               <ImageContentPreview
-                bannerImage={media.banner || DEFAULT_IMAGE}
+                bannerImage={media.thumbnail || DEFAULT_IMAGE}
                 altText={product.title}
               />
             )}
@@ -111,6 +111,7 @@ const ProductDetailsPreview: React.FC<ProductDetailsPreviewProps> = ({
             )}
           </div>
         )}
+         
         <div className="flex flex-col items-center px-10">
           <p className="font-medium text-4xl text-black">{price} FCFA</p>
           <Link to="/checkout" className="w-full group">

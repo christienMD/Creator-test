@@ -452,6 +452,37 @@ const Step1ProductUploadForm = ({ onComplete, initialData }: Props) => {
                       initialValue={form.getValues("description")}
                     />
                   </FormControl>
+                  {/* Description Guide - Add margin-top */}
+                  <div className="tox-tinymce mt-2 p-4 bg-gray-50 rounded-md text-sm">
+                    <h3 className="font-medium mb-2">
+                      Create a Compelling Product Description:
+                    </h3>
+                    <p>
+                      Use our editor's formatting tools to make your product
+                      irresistible to buyers! Include:
+                    </p>
+                    <ul className="list-disc pl-4 mt-2 space-y-1">
+                      <li>
+                        <strong>Key Benefits</strong> - What problems does your
+                        product solve?
+                      </li>
+                      <li>
+                        <strong>Specifications</strong> - Format, size,
+                        duration, or requirements
+                      </li>
+                      <li>
+                        <strong>Target Users</strong> - Who is this perfect for?
+                      </li>
+                      <li>
+                        <strong>Usage Terms</strong> - License and usage rights
+                      </li>
+                    </ul>
+                    <p className="mt-2 italic">
+                      Pro tip: Clear, detailed descriptions = more sales! Use
+                      headings, lists, and bold text to highlight important
+                      information.
+                    </p>
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}

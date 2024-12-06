@@ -1,60 +1,60 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import NotFoundPage from "@/pages/NotFoundPage";
-import HomePage from "@/pages/Home";
-import AboutPage from "@/pages/About";
-import LandingPage from "@/pages/Landing";
-import CatalogPage from "@/pages/Catalog";
-import MyContentPage from "@/pages/MyContent";
-import DetailsPage from "@/pages/Details";
-import CartPage from "@/pages/Cart";
-import CheckoutPage from "@/pages/ProductCheckout";
-import LoginPage from "@/pages/Login";
-import SignupPage from "@/pages/Signup";
-import CreatorsHomePage from "@/pages/CreatorsHomePage";
-import CreatorsDashboard from "@/pages/CreatorsDashboard";
-import Library from "@/pages/Library";
-import NewProduct from "@/pages/NewProduct";
-import PrivateRoutes from "@/pages/PrivateRoutes";
-import Success from "@/pages/Success";
-import ResetPassword from "@/pages/PasswordReset";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import NotFoundPage from '@/pages/NotFoundPage';
+import HomePage from '@/pages/Home';
+import AboutPage from '@/pages/About';
+import LandingPage from '@/pages/Landing';
+import CatalogPage from '@/pages/Catalog';
+import MyContentPage from '@/pages/MyContent';
+import DetailsPage from '@/pages/Details';
+import CartPage from '@/pages/Cart';
+import CheckoutPage from '@/pages/ProductCheckout';
+import LoginPage from '@/pages/Login';
+import SignupPage from '@/pages/Signup';
+import CreatorsHomePage from '@/pages/CreatorsHomePage';
+import CreatorsDashboard from '@/pages/CreatorsDashboard';
+import Library from '@/pages/Library';
+import NewProduct from '@/pages/NewProduct';
+import PrivateRoutes from '@/pages/PrivateRoutes';
+import Success from '@/pages/Success';
+import ResetPassword from '@/pages/PasswordReset';
 
 const router = createBrowserRouter([
   // Public routes
   {
-    path: "/",
+    path: '/',
     element: <LandingPage />,
     errorElement: <NotFoundPage />,
   },
   {
-    path: "/about",
+    path: '/about',
     element: <AboutPage />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <LoginPage />,
   },
   {
-    path: "/signup",
+    path: '/signup',
     element: <SignupPage />,
   },
   {
-    path: "/home",
+    path: '/home',
     element: <HomePage />,
   },
   {
-    path: "/catalog",
+    path: '/catalog',
     element: <CatalogPage />,
   },
   {
-    path: "/product/:type/:slug",
+    path: '/product/:type/:slug',
     element: <DetailsPage />,
   },
   {
-    path: "/password-reset",
+    path: '/password-reset',
     element: <ResetPassword />,
   },
   {
-    path: "/cart",
+    path: '/cart',
     element: <CartPage />,
   },
 
@@ -64,33 +64,34 @@ const router = createBrowserRouter([
     children: [
       // User routes
       {
-        path: "/my-content",
+        path: '/my-content',
         element: <MyContentPage />,
       },
+
       {
-        path: "/checkout",
+        path: '/checkout',
         element: <CheckoutPage />,
       },
       // Creator routes
       {
-        path: "/creator/home",
+        path: '/creator/home',
         element: <CreatorsHomePage />,
       },
       {
-        path: "/creator/dashboard",
+        path: '/creator/dashboard',
         element: <CreatorsDashboard />,
       },
       {
-        path: "/creator/library",
+        path: '/creator/library',
         element: <Library />,
       },
       {
-        path: "/creator/product/new",
+        path: '/creator/product/new',
         element: <NewProduct />,
       },
       // Shared protected routes
       {
-        path: "/success",
+        path: '/success',
         element: <Success />,
       },
     ],
