@@ -65,7 +65,7 @@ const Step1ProductUploadForm = ({ onComplete, initialData }: Props) => {
       preview_video: null,
       product_items: [],
     },
-    mode: "onChange", // Enable real-time validation
+    mode: "onChange",
   });
 
   const selectedMainCategory = form.watch("category_id");

@@ -12,7 +12,6 @@ import { AuthUser, LoginEntity } from "@/types/entities";
 import { useApi } from "@/utils/fetcher";
 import { ErrorAlert } from "../ErrorAlert/ErrorAlert";
 
-
 interface ApiError {
   message: string;
   errors?: {
@@ -70,7 +69,7 @@ function LoginForm() {
       // Add password after the identifier
       loginData.password = data.password;
 
-      console.log('type: ', typeof(data.password))
+      console.log("type: ", typeof data.password);
 
       const response = await API.login(loginData);
 
@@ -86,17 +85,17 @@ function LoginForm() {
 
       // Navigate with welcome message state
       const redirectPath =
-        loginResponse.role === "creator" ? "/creator/dashboard" : "/home";
+        loginResponse.role === "creator" ? "/creator/product/new" : "/home";
       navigate(redirectPath, {
         state: {
           showWelcome: true,
           userName: loginResponse.name,
-        },  
+        },
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      console.error('Login error:', error);
-      const errorMessage = error?.message || 'Invalid credentials';
+      console.error("Login error:", error);
+      const errorMessage = error?.message || "Invalid credentials";
       setApiError({
         message: errorMessage,
         errors: error?.errors,
@@ -133,7 +132,6 @@ function LoginForm() {
             className={cn(
               "py-5",
               errors.identifier && "border-red-500 focus-visible:ring-red-500"
-
             )}
           />
           {errors.identifier && (
@@ -155,13 +153,13 @@ function LoginForm() {
           </label>
           <div className="relative">
             <Input
-              {...register('password')}
+              {...register("password")}
               id="password"
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               className={cn(
-                'py-5',
-                errors.password && 'border-red-500 focus-visible:ring-red-500'
+                "py-5",
+                errors.password && "border-red-500 focus-visible:ring-red-500"
               )}
             />
             <span
@@ -179,7 +177,6 @@ function LoginForm() {
         </div>
 
         <div className="flex justify-end">
-
           <Link
             to="/password-reset"
             className="text-sm font-medium text-primary hover:underline"
@@ -192,8 +189,8 @@ function LoginForm() {
           type="submit"
           disabled={isLoading}
           className={cn(
-            'w-full bg-creator-bg-400 hover:bg-creator-bg-400 p-5 font-semibold',
-            isLoading && 'cursor-text opacity-70'
+            "w-full bg-creator-bg-400 hover:bg-creator-bg-400 p-5 font-semibold",
+            isLoading && "cursor-text opacity-70"
           )}
         >
           {isLoading ? (
@@ -202,12 +199,12 @@ function LoginForm() {
               Signing in...
             </>
           ) : (
-            'Sign in'
+            "Sign in"
           )}
         </Button>
 
         <p className="text-center font-medium">
-          Don't have an account?{' '}
+          Don't have an account?{" "}
           <Link to="/signup" className="text-creator-text-100">
             Signup
           </Link>

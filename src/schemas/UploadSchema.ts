@@ -24,14 +24,13 @@ export const ProductItemSchema = z.object({
 
 export const Step1FormSchema = z.object({
   title: z.string().min(50, "Title must be at least 50 characters").max(255),
-  description: z
-    .string()
-    .min(100, {
-      message:
-        "Product needs to be well described with at least 200 characters",
-    }),
+  description: z.string().min(100, {
+    message: "Product needs to be well described with at least 200 characters",
+  }),
   price: z
     .string()
+    .min(1, "price is required")
+    .max(20, "")
     .regex(
       /^\d+(\.\d{1,2})?$/,
       "Price must be a valid number with up to 2 decimal places"
@@ -51,7 +50,7 @@ export const Step1FormSchema = z.object({
 
 export const UploadFormSchema = z.object({
   title: z.string().min(3, "Title must be at least 3 characters").max(255),
-  description: z.string().min(1 , 'Desription of your product is required'),
+  description: z.string().min(1, "Desription of your product is required"),
   price: z
     .string()
     .regex(
