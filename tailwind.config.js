@@ -113,7 +113,7 @@ export default {
       },
     },
   },
-  plugins: [import("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [import("tailwindcss-animate"), import("@tailwindcss/typography")],
 };
 
 // example usage of custom colors:
