@@ -102,7 +102,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           <div className="w-7 h-7 flex items-center justify-center">
             <button
               onClick={() => togglePlay(videoRef)}
-              className="text-white hover:bg-creator-bg-400/20 rounded-full p-1.5 transition-colors transform-none"
+              className="text-white bg-creator-bg-400/20 rounded-full p-1.5 transition-colors transform-none"
             >
               {isPlaying ? (
                 <Pause size={16} className="relative" />
@@ -115,7 +115,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={() => toggleMute(videoRef)}
-              className="text-white hover:bg-creator-bg-400/20 rounded-full p-1.5 transition-colors"
+              className="text-white bg-creator-bg-400/20 rounded-full p-1.5 transition-colors"
             >
               {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
             </button>
@@ -141,7 +141,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         {!isModal && (
           <button
             onClick={() => setIsModalOpen(true)}
-            className="text-white hover:bg-creator-bg-400/20 rounded-full p-1.5 transition-colors"
+            className="text-white bg-creator-bg-400/20 rounded-full p-1.5 transition-colors"
           >
             <Maximize size={16} />
           </button>
