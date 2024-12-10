@@ -10,10 +10,10 @@ const AboutPlatform = () => {
             Empowering Creators, Everywhere
           </h1>
           <p className="max-w-3xl mx-auto text-lg text-gray-700 mb-8">
-            CREATORS is a revolutionary platform designed to support, inspire,
-            and monetize the creative work of talented individuals across the
-            globe. We believe in the power of creativity and providing tools
-            that transform passion into sustainable careers.
+            NGUAVA is a revolutionary platform designed to support, inspire, and
+            monetize the creative work of talented individuals across the globe.
+            We believe in the power of creativity and providing tools that
+            transform passion into sustainable careers.
           </p>
           <Link
             to="/signup"

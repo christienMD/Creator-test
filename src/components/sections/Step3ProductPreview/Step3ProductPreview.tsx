@@ -171,6 +171,212 @@ const Step3ProductPreview = ({
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Main Content Column */}
+          <div className="lg:col-span-8 space-y-6">
+            {/* Media Preview Card */}
+            <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+              <div className="p-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">
+                  Media Preview
+                </h3>
+
+                <div className="space-y-8">
+                  {formData.banner && (
+                    <div className="space-y-3">
+                      <label className="text-sm font-medium text-gray-700 block">
+                        Banner Image
+                      </label>
+                      <div className="rounded-lg overflow-hidden bg-gray-50 border border-gray-100">
+                        {renderMediaPreview(formData.banner, "image")}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {formData.thumbnail && (
+                      <div className="space-y-3">
+                        <label className="text-sm font-medium text-gray-700 block">
+                          Thumbnail
+                        </label>
+                        <div className="rounded-lg overflow-hidden bg-gray-50 border border-gray-100">
+                          {renderMediaPreview(formData.thumbnail, "image")}
+                        </div>
+                      </div>
+                    )}
+
+                    {formData.preview_video && (
+                      <div className="space-y-3">
+                        <label className="text-sm font-medium text-gray-700 block">
+                          Preview Video
+                        </label>
+                        <div className="rounded-lg overflow-hidden bg-gray-50 border border-gray-100">
+                          {renderMediaPreview(formData.preview_video, "video")}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Product Items Card */}
+            <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+              <div className="p-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">
+                  Product Items
+                </h3>
+
+                <div className="space-y-6">
+                  {formData.product_items.map((item, index) => (
+                    <div
+                      key={index}
+                      className="border border-gray-200 rounded-lg hover:border-gray-300 transition-colors"
+                    >
+                      <div className="p-6 space-y-4">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-gray-100">
+                          <h4 className="text-lg font-medium text-gray-900">
+                            Item {index + 1}: {item.title}
+                          </h4>
+                          <span className="px-3 py-1 text-sm text-gray-600 bg-gray-50 rounded-full">
+                            Order: {item.order}
+                          </span>
+                        </div>
+
+                        {item.description && (
+                          <div className="py-4">
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: item.description,
+                              }}
+                              className="prose max-w-none text-gray-600 break-words"
+                            />
+                          </div>
+                        )}
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-gray-100">
+                          <div className="flex items-center space-x-3">
+                            <span className="text-sm font-medium text-gray-600">
+                              Downloadable:
+                            </span>
+                            <span
+                              className={`px-2 py-1 text-sm rounded-full ${
+                                item.is_downloadable
+                                  ? "bg-green-50 text-green-700"
+                                  : "bg-gray-50 text-gray-600"
+                              }`}
+                            >
+                              {item.is_downloadable ? "Yes" : "No"}
+                            </span>
+                          </div>
+
+                          {item.media && (
+                            <div className="space-y-3">
+                              <span className="text-sm font-medium text-gray-600 block">
+                                Media:
+                              </span>
+                              <div className="rounded-lg overflow-hidden bg-gray-50 border border-gray-100">
+                                {renderMediaPreview(
+                                  item.media,
+                                  item.media?.type?.startsWith("video/")
+                                    ? "video"
+                                    : item.media?.type?.startsWith("image/")
+                                    ? "image"
+                                    : "other"
+                                )}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-4">
+            <div className="bg-white rounded-xl shadow-sm overflow-hidden sticky top-6">
+              <div className="p-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">
+                  Product Details
+                </h3>
+
+                <div className="space-y-6">
+                  <div>
+                    <label className="text-sm font-medium text-gray-600 block mb-2">
+                      Title
+                    </label>
+                    <p className="text-gray-900 break-words">
+                      {formData.title}
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium text-gray-600 block mb-2">
+                      Price
+                    </label>
+                    <p className="text-2xl font-semibold text-gray-900">
+                      {formatPrice(formData.price)}
+                    </p>
+                  </div>
+
+                  {formData.description && (
+                    <div className="pt-4 border-t border-gray-100">
+                      <label className="text-sm font-medium text-gray-600 block mb-3">
+                        Description
+                      </label>
+                      <div className="prose max-w-none text-gray-600">
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: formData.description,
+                          }}
+                          className="break-words max-h-[400px] overflow-y-auto pr-4"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="pt-6 space-y-4">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={onBack}
+                      disabled={isSubmitting}
+                      className="w-full flex items-center justify-center gap-2 py-4 h-14 border-gray-200 hover:bg-gray-50"
+                    >
+                      <ArrowLeft size={16} />
+                      Back to Edit
+                    </Button>
+
+                    <Button
+                      type="button"
+                      onClick={handleSubmit}
+                      disabled={isSubmitting}
+                      className="w-full py-3 h-14 text-white bg-creator-bg-500 hover:bg-creator-bg-600 transition-colors"
+                    >
+                      {isSubmitting ? (
+                        <div className="flex items-center justify-center gap-2">
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Creating Product...
+                        </div>
+                      ) : (
+                        "Create Product"
+                      )}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+        {/* <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div className="lg:col-span-8 space-y-6">
             <div className="bg-white rounded-xl shadow-sm overflow-hidden">
               <div className="p-6 space-y-6">
@@ -360,6 +566,6 @@ const Step3ProductPreview = ({
       </div>
     </div>
   );
-};
+}; */}
 
 export default Step3ProductPreview;

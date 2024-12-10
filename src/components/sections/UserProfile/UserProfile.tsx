@@ -1,5 +1,5 @@
-"use client";
-import { useEffect, useState } from "react";
+'use client';
+import { useEffect, useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,14 +8,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthUser } from "@/types/entities";
-import { useApi } from "@/utils/fetcher";
-import { toast } from "react-toastify";
-import { Loader } from "lucide-react";
-import useCartStore from "@/stores/useCartStore";
+} from '@/components/ui/dropdown-menu';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthUser } from '@/types/entities';
+import { useApi } from '@/utils/fetcher';
+import { toast } from 'react-toastify';
+import { Loader } from 'lucide-react';
+import useCartStore from '@/stores/useCartStore';
 
 export function UserProfile() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +27,7 @@ export function UserProfile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userDataString = localStorage.getItem("userData");
+    const userDataString = localStorage.getItem('userData');
     if (userDataString) {
       setUser(JSON.parse(userDataString));
     }
@@ -36,28 +36,28 @@ export function UserProfile() {
   const handleLogout = async () => {
     try {
       setIsLoggingOut(true);
-      const token = localStorage.getItem("auth_token");
+      const token = localStorage.getItem('auth_token');
 
       if (token) {
         await API.logout(token);
       }
 
-      localStorage.removeItem("auth_token");
-      localStorage.removeItem("userData");
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('userData');
       clearCart();
 
-      navigate("/login", {
+      navigate('/login', {
         replace: true,
         state: {
           loggedOut: true,
         },
       });
     } catch (error) {
-      console.error("Logout failed:", error);
-      localStorage.removeItem("auth_token");
-      localStorage.removeItem("userData");
-      toast.error("Error during logout");
-      navigate("/login");
+      console.error('Logout failed:', error);
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('userData');
+      toast.error('Error during logout');
+      navigate('/login');
     } finally {
       setIsLoggingOut(false);
     }
@@ -65,9 +65,9 @@ export function UserProfile() {
 
   const getInitials = (name: string) => {
     return name
-      .split(" ")
+      .split(' ')
       .map((n) => n[0])
-      .join("")
+      .join('')
       .toUpperCase();
   };
 
@@ -77,7 +77,7 @@ export function UserProfile() {
     //   href: `/profile/user-dashboard`,
     //   disabled: false,
     // },
-    { label: "Dashboard", href: "/creator/dashboard", disabled: false },
+    { label: 'Dashboard', href: '/creator/product/new', disabled: false },
     // { label: "Post a Request", href: "#", disabled: false },
     // { label: "Refer a Friend", href: "#", disabled: false },
     // {
@@ -110,7 +110,7 @@ export function UserProfile() {
               />
             )}
             <AvatarFallback className="bg-creator-bg-400">
-              {user?.name ? getInitials(user.name) : ""}
+              {user?.name ? getInitials(user.name) : ''}
             </AvatarFallback>
           </Avatar>
           <span className="absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white bg-creator-bg-300" />
@@ -137,10 +137,10 @@ export function UserProfile() {
                 to={item.href}
                 className={`${
                   item.disabled
-                    ? "cursor-text opacity-50"
-                    : item.label === "Refer a Friend"
-                    ? "text-creator-bg-400 cursor-pointer font-medium group-hover:text-white"
-                    : "cursor-pointer"
+                    ? 'cursor-text opacity-50'
+                    : item.label === 'Refer a Friend'
+                    ? 'text-creator-bg-400 cursor-pointer font-medium group-hover:text-white'
+                    : 'cursor-pointer'
                 } w-full`}
                 onClick={(e) => {
                   if (item.disabled) {
@@ -166,7 +166,7 @@ export function UserProfile() {
                 <span>Logging out...</span>
               </div>
             ) : (
-              "Logout"
+              'Logout'
             )}
           </button>
         </DropdownMenuItem>

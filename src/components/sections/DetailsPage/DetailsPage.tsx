@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useSingleProduct } from '@/hooks/useSingleProductS';
-import ProductDetailsInfo from '../ProductDetailsInfo/ProductDetailsInfo';
-import ProductDetailsPreview from '../ProductDetailsPreview/ProductDetailsPreview';
-import { getMediaByCollection } from '@/utils/getMediaByCollection';
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useSingleProduct } from "@/hooks/useSingleProductS";
+import ProductDetailsInfo from "../ProductDetailsInfo/ProductDetailsInfo";
+import ProductDetailsPreview from "../ProductDetailsPreview/ProductDetailsPreview";
+import { getMediaByCollection } from "@/utils/getMediaByCollection";
 const DetailsPage = () => {
   const { slug } = useParams<{ slug: string; type: string }>();
   const { product, isLoading, error, fetchSingleProduct, resetProduct } =
     useSingleProduct();
+  console.log("product: ", product);
+
   useEffect(() => {
     // Reset product before fetching
     resetProduct();
@@ -63,9 +65,7 @@ const DetailsPage = () => {
         <ProductDetailsInfo
           category={relationships.category}
           title={title}
-          description={
-            <div dangerouslySetInnerHTML={{ __html: description }} />
-          }
+          description={description}
           creator={relationships.creator}
         />
         <ProductDetailsPreview

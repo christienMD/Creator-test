@@ -115,9 +115,7 @@ export function NavUser({ user }: { user: AuthUser | null }) {
                     src={user?.profile_pic ?? ""}
                     alt={user?.name ?? ""}
                   />
-                  <AvatarFallback className="rounded-lg ">
-                    {user?.name ? getInitials(user.name) : ""}
-                  </AvatarFallback>
+                  <AvatarFallback className="rounded-lg ">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">{user?.name}</span>

@@ -45,7 +45,7 @@ const Navbar = () => {
             className={`text-lg font-bold hover:text-gray-400 transition-colors 
               ${
                 location.pathname === link.to
-                  ? 'md:text-black md:border-b-8 md:border-b-creator-bg-300 md:pb-4 text-white'
+                  ? 'md:text-black md:border-b-4 md:border-b-creator-bg-300 md:pb-1 text-white'
                   : 'md:text-black text-white'
               }`}
           >
@@ -102,9 +102,9 @@ const Navbar = () => {
                 >
                   <div className="h-full flex flex-col p-6">
                     <SheetHeader className="mb-6">
-                      <h2 className="text-3xl font-bold">
+                      <h2 className="text-[26px] font-bold">
                         <Link to="/home" className="text-white">
-                          CREATORS
+                          NGUAVA
                         </Link>
                       </h2>
                     </SheetHeader>
@@ -132,8 +132,8 @@ const Navbar = () => {
 
               {/* CREATORS Logo Centered */}
               <div className="flex-1  font-bold">
-                <h1 className="text-2xl font-bold text-creator-bg-400">
-                  <Link to="/home">CREATORS</Link>
+                <h1 className="text-[26px] font-bold text-creator-bg-400">
+                  <Link to="/home">NGUAVA</Link>
                 </h1>
               </div>
 
@@ -154,8 +154,8 @@ const Navbar = () => {
             <div className="hidden md:flex items-center w-full">
               {/* Logo */}
               <div className="flex-shrink-0 font-bold">
-                <h1 className="text-2xl md:text-4xl font-bold text-creator-bg-400">
-                  <Link to="/home">CREATORS</Link>
+                <h1 className="text-[26px] font-bold text-creator-bg-400">
+                  <Link to="/home">NGUAVA</Link>
                 </h1>
               </div>
 

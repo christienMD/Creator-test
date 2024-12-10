@@ -17,6 +17,7 @@ import NewProduct from '@/pages/NewProduct';
 import PrivateRoutes from '@/pages/PrivateRoutes';
 import Success from '@/pages/Success';
 import ResetPassword from '@/pages/PasswordReset';
+import FaqsPage from '@/pages/FaqsPage';
 
 const router = createBrowserRouter([
   // Public routes
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: '/cart',
     element: <CartPage />,
+  },
+  {
+    path: '/faqs',
+    element: <FaqsPage />,
   },
 
   // All protected routes under a single PrivateRoutes wrapper

@@ -484,6 +484,7 @@ export const navLinks = [
   { to: '/catalog', label: 'Catalog' },
   { to: '/my-content', label: 'My Content' },
   { to: '/about', label: 'About' },
+  { to: '/faqs', label: 'FAQs' },
 ];
 
 export const CartItems: CartItem[] = [

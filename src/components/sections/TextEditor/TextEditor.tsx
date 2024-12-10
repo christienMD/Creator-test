@@ -58,6 +58,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
             "code",
             "help",
             "wordcount",
+            
           ],
           toolbar:
             "undo redo | blocks | " +

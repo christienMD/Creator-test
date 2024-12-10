@@ -15,9 +15,9 @@ const ProductDetailsInfo: React.FC<ProductDetails> = ({
   title,
 }) => {
   return (
-    <div className="w-full mt-4 sm:mt-6 lg:col-span-4">
-      <div className="w-full bg-[#F0FFFF] rounded-md">
-        <div className="p-3 sm:p-4 md:p-6">
+    <div className="w-full mt-4 sm:mt-6 lg:col-span-4 bg-gray-50">
+      <div className="w-full rounded-md p-3 sm:p-4 md:p-6">
+        <div className="">
           <div className="flex flex-wrap items-center gap-2 sm:gap-[14px]">
             <p className="text-lg sm:text-xl md:text-2xl font-medium capitalize">
               Product Category
@@ -29,9 +29,10 @@ const ProductDetailsInfo: React.FC<ProductDetails> = ({
           <h1 className="text-lg sm:text-xl font-bold mt-3">{title}</h1>
         </div>
 
-        <div className="tox-tinymce  p-3 sm:p-4 md:p-6 mt-3 text-base sm:text-lg md:text-xl font-normal text-[#393939] bg-white rounded-b-md">
-          {description}
-        </div>
+        <div
+          className="prose prose-lg max-w-none"
+          dangerouslySetInnerHTML={{ __html: description as string }}
+        />
       </div>
     </div>
   );
