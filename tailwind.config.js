@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+import animate from "tailwindcss-animate";
+import typography from "@tailwindcss/typography";
+
 export default {
   darkMode: ["class"],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -113,7 +116,7 @@ export default {
       },
     },
   },
-  plugins: [import("tailwindcss-animate"), import("@tailwindcss/typography")],
+  plugins: [animate, typography],
 };
 
 // example usage of custom colors:
